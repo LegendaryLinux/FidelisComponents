@@ -1,0 +1,141 @@
+@import 'colors';
+
+@mixin pt-sans-font-face() {
+	font-family: 'PT Sans', 'sans-serif' !important;
+	src: url("https://fonts.googleapis.com/css?family=PT+Sans") format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@mixin colorOverride() {
+	$grey: $fidelis-gray;
+	$orange: $fidelis-orange;
+	$blue: $fidelis-blue;
+}
+
+@mixin box-shadow($top, $left, $blur, $spread, $color, $inset: false) {
+	@if $inset {
+		box-shadow:inset $top $left $blur $spread $color;
+	} @else {
+		box-shadow: $top $left $blur $spread $color;
+	}
+}
+
+/* Takes a variable argument $shadow for use with adding an
+ * optional box-shadow to the main content css
+ */
+@mixin fidelis-main-content($box-shadow: null) {
+	@if ($box-shadow) {
+		@include box-shadow($box-shadow...);
+	}
+
+	margin: 1em auto;
+	background-color: $fidelis-white;
+	border: 1px solid lightgrey;
+	border-top: 5px solid #025d93;
+	overflow: hidden;
+}
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-top-radius($radius: 4px) {
+	/* Top left border radius property */
+	border-top-left-radius: $radius;
+
+	/* Top right border radius property */
+	border-top-right-radius: $radius;
+
+	background-clip: padding-box;
+}
+
+@mixin border-bottom-radius($radius: 4px) {
+	/* Bottom left border radius property */
+	border-bottom-left-radius: $radius;
+
+	/* Bottom right border radius property */
+	border-bottom-right-radius: $radius;
+
+	background-clip: padding-box;
+}
+
+@mixin border-right-radius($radius: 4px) {
+	/* Top right border radius property */
+	border-top-right-radius: $radius;
+
+	/* Bottom right border radius property */
+	border-bottom-right-radius: $radius;
+
+	background-clip: padding-box;
+}
+
+@mixin border-left-radius($radius: 4px) {
+	/* Top left border radius property */
+	border-top-left-radius: $radius;
+
+	/* Bottom left border radius property */
+	border-bottom-left-radius: $radius;
+
+	background-clip: padding-box;
+}
+
+@mixin fidelis-modal(){
+	@include border-radius(3px);
+	background-color: $modal-background;
+	border: 1px solid $modal-border-color;
+	min-width: 7em;
+	min-height: 5em;
+	font-size: 14px;
+	color: $fidelis-modal-font-color;
+
+	.fidelis-modal-title{
+		padding: 25px 40px 0;
+		font-size: 30px;
+		line-height: 1.3em;
+		color: $fidelis-modal-title-color;
+	}
+
+	.fidelis-modal-instructions{
+		padding-left: 40px;
+		padding-right: 40px;
+		color: $fidelis-modal-instructions-color;
+		font-size: 14px;
+	}
+
+	.fidelis-modal-body{
+		padding: 35px 40px 35px;
+	}
+
+	.fidelis-modal-heading{
+		font-size: 14px;
+		font-weight: bold;
+		color: $fidelis-modal-heading-color;
+	}
+
+	label{
+		font-size: 14px;
+		font-weight: bold;
+		color: $fidelis-modal-label-color;
+	}
+
+	.fidelis-modal-footer{
+		background-color: $fidelis-modal-footer-background-color;
+		border-top: 1px solid $fidelis-modal-footer-border-top;
+		padding: 20px 20px 20px;
+		text-align: right;
+
+		button{
+			margin: 5px;
+		}
+	}
+
+	table{
+		th{
+			text-align: left;
+			padding-right: 0.5em;
+			color: $fidelis-modal-label-color;
+		}
+	}
+}

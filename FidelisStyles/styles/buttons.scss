@@ -1,0 +1,103 @@
+@import 'styles/colors';
+@import 'styles/mixins';
+
+@mixin fidelis-button-base($font-weight: bold) {
+	padding: 12px 18px;
+	font-weight: $font-weight;
+	text-transform: uppercase;
+	border-radius: 4px;
+
+	/* IE 10 and 11 only */
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active){
+		padding-top: 0!important;
+		padding-bottom: 0!important;
+	}
+}
+
+@mixin fidelis-button-gen($border-color: #dadada,
+	$bg-color: $fidelis-gray,
+	$hl-color: #dadada,
+	$text-color: rgb(0,0,0),
+	$disabled-color: $fidelis-disabled,
+	$disabled-border: $fidelis-light-gray) {
+
+	background-color: $bg-color;
+	border: 1px solid $border-color;
+	color: $text-color;
+
+	&:hover {
+		color: $text-color;
+		background-color: $hl-color;
+		cursor: pointer;
+	}
+
+	&:focus {
+		color: $text-color;
+		background-color: $hl-color;
+		cursor: pointer;
+	}
+
+	&:disabled {
+		color: $text-color;
+		background-color: $disabled-color;
+		border: 1px solid $disabled-border;
+
+		&:hover {
+			color: $text-color;
+			cursor: default;
+		}
+	}
+};
+
+.fidelis-button {
+	@include pt-sans-font-face();
+	@include fidelis-button-base();
+}
+
+.fidelis-button-primary {
+	@include pt-sans-font-face();
+	@include fidelis-button-base();
+	@include fidelis-button-gen($fidelis-btn-primary-border, $fidelis-btn-primary-bg,
+					$fidelis-btn-primary-border, $fidelis-btn-primary-text);
+}
+
+.fidelis-button-secondary {
+	@include pt-sans-font-face();
+	@include fidelis-button-base();
+	@include fidelis-button-gen($fidelis-btn-secondary-border, $fidelis-btn-secondary-bg,
+					$fidelis-btn-secondary-border, $fidelis-btn-secondary-text,
+					$fidelis-btn-secondary-disabled-bg, $fidelis-btn-secondary-disabled-border);
+}
+
+.fidelis-button-danger {
+	@include pt-sans-font-face();
+	@include fidelis-button-base();
+	@include fidelis-button-gen($fidelis-btn-danger-border, $fidelis-btn-danger-bg,
+					$fidelis-btn-danger-border, $fidelis-btn-danger-text);
+}
+
+.fidelis-button-default {
+	@include pt-sans-font-face();
+	@include fidelis-button-base();
+	@include fidelis-button-gen();
+}
+
+.fidelis-btn-modal-exit {
+	background-color: white;
+	border: 0;
+
+	.icon {
+		background-color: white;
+		font-size: 2em;
+	}
+}
+
+.fidelis-btn-file-link {
+	height: 2em;
+	width: 50%;
+	text-align: left !important;
+	justify-content: left;
+	text-decoration: none;
+	@include border-radius(4px);
+	@include fidelis-button-gen(#808080, $fidelis-blue, $fidelis-blue-highlight, white);
+}

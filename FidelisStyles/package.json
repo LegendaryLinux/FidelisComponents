@@ -1,0 +1,15 @@
+{
+  "name": "@fidelisppm/fidelis-styles",
+  "version": "1.0.2",
+  "description": "A set of styles used with components written for Fidelis PPM",
+  "main": "src/js/styles.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
+  },
+  "author": "Chris Wilson <chris@legendserver.info>"
+}

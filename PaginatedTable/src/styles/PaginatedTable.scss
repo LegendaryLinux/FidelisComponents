@@ -1,0 +1,84 @@
+.paginated-table-container{
+  @import '~@fidelisppm/fidelis-styles/styles/mixins';
+  @import '~@fidelisppm/fidelis-styles/styles/colors';
+  font-family: 'PT Sans', 'sans-serif';
+
+  @include border-radius(4px);
+  @include box-shadow(1px,1px,1px,1px,$fidelis-gray);
+  background-color: $fidelis-white;
+  padding: 1em auto;
+  width: 100%;
+
+  .paginated-table-wrapper{
+    @include border-top-radius(4px);
+    padding: 0;
+
+    .paginated-table{
+      @include border-top-radius(4px);
+      width: 100%;
+      border: 1px solid $fidelis-gray;
+      align-items: center;
+      vertical-align: center;
+      border-spacing: 0;
+      border-bottom: none;
+
+      tbody{
+        overflow-y: auto;
+
+        tr {
+          background-color: $table-row-background;
+          border-top: 1px solid $table-border-color;
+        }
+        tr:hover {
+          background-color: $table-row-highlight;
+        }
+      }
+
+      thead tr{
+        height: 2em;
+        background-color: $table-header-background;
+      }
+
+      thead, tbody{
+        tr{
+          line-height: 1.5em;
+        }
+      }
+
+      th, td{
+        padding-left: 1em;
+        padding-right: 1em;
+        text-align: left;
+        border-bottom: 1px solid $fidelis-gray;
+      }
+
+      .is-sortable:hover{
+        cursor: pointer;
+      }
+
+      .is-centered{
+        text-align: center;
+      }
+    }
+  }
+
+  .paginated-table-pager{
+    width: 100%;
+    text-align: center;
+
+    ul{
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .paginated-table-pagination-button{
+      margin: 1em 0.15em;
+    }
+
+    .is-active{
+      background-color: $fidelis-blue-highlight;
+      font-weight: bolder;
+      color: $fidelis-white;
+    }
+  }
+}

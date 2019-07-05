@@ -1,0 +1,81 @@
+/* Fidelis Color Palette */
+$fidelis-blue:                      #009cd1;
+$fidelis-dark-blue:                 #025d9e;
+$fidelis-blue-highlight:            #009ed8;
+$fidelis-orange:                    #ee9f3f;
+$fidelis-orange-border:             #dc8c21;
+$fidelis-orange-highlight:          #ffa500;
+$fidelis-orange-disabled:           #ffa500;
+$fidelis-green:                     #53b141;
+$fidelis-green-border:              #2e8c1b;
+$fidelis-green-disabled:            #a3d39a;
+$fidelis-green-disabled-border:     #91c188;
+$fidelis-red:                       #ff0000;
+$fidelis-danger:                    #ff0000;
+$fidelis-red-border:                #e60000;
+$fidelis-red-disabled:              lightred;
+$fidelis-gray:                      #ececec;
+$fidelis-gray-highlight:            #d3e7f4;
+$fidelis-dark-gray:                 #d3d3d3;
+$fidelis-disabled:                  #dddddd;
+$fidelis-light-gray:                #f2f3f4;
+$fidelis-white:                     #ffffff;
+$fidelis-black:                     #000000;
+
+$fidelis-default-border-color:      #dadada;
+$fidelis-current-border-color:      #808080;
+
+/* Tables, rows, and columns */
+$table-header-background:   #f0f0ee;
+$table-row-background:      #ffffff;
+$table-row-highlight:       #f8f9f9;
+$table-border-color:        #d3d3d3;
+
+/* Modal Colors */
+$modal-background:          #ffffff;
+$modal-border-color:        #d3d3d3;
+
+/* Colors for fidelis-modal */
+$fidelis-modal-title-color:               #202020;
+$fidelis-modal-heading-color:             #202020;
+$fidelis-modal-label-color:               #202020;
+$fidelis-modal-font-color:                #808080;
+$fidelis-modal-instructions-color:        #808080;
+$fidelis-modal-footer-background-color:   #fbfbfb;
+$fidelis-modal-footer-border-top:         #d7d7d7;
+
+/* Body Background Color */
+$body-background-color:     #F2F3F4;
+
+/* Button Colors */
+$fidelis-btn-primary-bg:                    $fidelis-orange;
+$fidelis-btn-primary-border:                $fidelis-orange-border;
+$fidelis-btn-primary-highlight:             $fidelis-orange-border;
+$fidelis-btn-primary-text:                  $fidelis-white;
+
+$fidelis-btn-secondary-bg:                  $fidelis-green;
+$fidelis-btn-secondary-border:              $fidelis-green-border;
+$fidelis-btn-secondary-highlight:           $fidelis-green-border;
+$fidelis-btn-secondary-text:                $fidelis-white;
+
+$fidelis-btn-secondary-disabled-bg:         $fidelis-green-disabled;
+$fidelis-btn-secondary-disabled-border:     $fidelis-green-disabled-border;
+$fidelis-btn-secondary-disabled-highlight:  $fidelis-green-disabled-border;
+$fidelis-btn-secondary-disabled-text:       $fidelis-white;
+
+$fidelis-btn-danger-bg:                     $fidelis-red;
+$fidelis-btn-danger-border:                 $fidelis-red-border;
+$fidelis-btn-danger-highlight:              $fidelis-red-border;
+$fidelis-btn-danger-disabled:               $fidelis-red-disabled;
+$fidelis-btn-danger-text:                   $fidelis-white;
+
+/* Banner Message Colors */
+$fidelis-banner-success-bg:                 #5ebf72;
+$fidelis-banner-warning-bg:                 #fbd913;
+$fidelis-banner-error-bg:                   #ff0000;
+$fidelis-banner-text-color:                 #ffffff;
+
+/* Input Colors */
+$fidelis-input-border-color:                $fidelis-dark-gray;
+$fidelis-input-border-color-focus:         $fidelis-blue;
+$fidelis-input-border-color-danger:         $fidelis-danger;
