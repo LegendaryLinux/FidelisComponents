@@ -1,0 +1,39 @@
+{
+  "name": "@fidelisppm/popover",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
+  },
+  "author": "Chris Wilson <chris@legendserver.info>",
+  "description": "A React component which displays a popover when an element is clicked.",
+  "keywords": [
+    "popover",
+    "tooltip"
+  ],
+  "license": "SEE LICENSE IN GIT REPO",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --watch --mode development"
+  },
+  "dependencies": {
+    "prop-types": "latest",
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^2.1.1",
+    "node-sass": "^4.12.0",
+    "path": "^0.12.7",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  }
+}
