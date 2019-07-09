@@ -1,0 +1,29 @@
+@import '~@fidelisppm/fidelis-styles/styles/colors';
+
+.fidelis-action-link-trigger{
+  display: inline-block;
+  width: 25px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.fidelis-action-link-content{
+  min-width: 7em;
+  max-width: 15em;
+  text-align: center;
+  text-wrap: none;
+  line-height: 1em;
+
+  a{
+    display: block;
+    text-decoration: none;
+    padding: 0.5em;
+    color: $fidelis-blue;
+
+    &:hover{
+      background-color: $fidelis-gray-highlight;
+      cursor: pointer;
+    }
+  }
+}
