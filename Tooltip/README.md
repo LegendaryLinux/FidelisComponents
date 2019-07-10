@@ -13,7 +13,7 @@ Usage
 ---
 ```jsx harmony
 <Tooltip
-	target: {document.getElementById('example-span')}
-	tooltip: "I am a helpful message!"
+	target={document.getElementById('example-span')}
+	tooltip="I am a helpful message!"
 />
 ```
