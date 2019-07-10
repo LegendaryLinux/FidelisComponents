@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/action-link",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -20,14 +20,14 @@
   "dependencies": {
     "@fidelisppm/fidelis-styles": "^1.0.2",
     "@fidelisppm/popover": "^1.0.0",
-    "@fidelisppm/utils": "^1.0.0",
+    "@fidelisppm/utils": "^1.0.1",
     "prop-types": "latest",
     "react": "^16.8.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
