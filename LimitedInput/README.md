@@ -21,7 +21,7 @@ only when it is reached or exceeded. Defaults to false.
 `bottom` or `right`. Defaults to `bottom`. 
 
 ```jsx harmony
-import { LimitedInput } from 'limited-input';
+import LimitedInput from 'limited-input';
 
 // In render function
 <LimitedInput

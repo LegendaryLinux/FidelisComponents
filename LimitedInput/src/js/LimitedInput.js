@@ -4,7 +4,7 @@ import { forEach as _forEach } from 'lodash-es';
 import MaskedInput from "react-text-mask";
 import '../styles/LimitedInput.scss';
 
-class LimitedInput extends Component {
+export default class LimitedInput extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -87,7 +87,7 @@ LimitedInput.defaultProps = {
 	alertPosition: 'bottom',
 };
 
-class NumberInput extends Component {
+export class NumberInput extends Component {
 	handleKeyDown = (event) => {
 		const key = event.keyCode;
 		// Allow number line
@@ -118,7 +118,7 @@ class NumberInput extends Component {
 	}
 }
 
-const PhoneInput = props => (
+export const PhoneInput = props => (
 	<MaskedInput
 		{...props}
 		mask={['(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
@@ -128,7 +128,7 @@ const PhoneInput = props => (
 	/>
 );
 
-const ZipInput = props => (
+export const ZipInput = props => (
 	<MaskedInput
 		{...props}
 		mask={[/\d/, /\d/, /\d/, /\d/, /\d/]}
@@ -137,5 +137,3 @@ const ZipInput = props => (
 		keepCharPositions={true}
 	/>
 );
-
-export { LimitedInput, NumberInput, PhoneInput, ZipInput };
