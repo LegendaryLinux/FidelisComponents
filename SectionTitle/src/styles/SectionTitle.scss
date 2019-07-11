@@ -1,0 +1,9 @@
+@import '~@fidelisppm/fidelis-styles/styles/colors';
+
+.section-title{
+    color:              $fidelis-blue;
+    line-height:        2em;
+    border-bottom:      1px solid $fidelis-dark-gray;
+    width:              100%;
+    text-align:         left;
+}

@@ -1,16 +1,16 @@
 {
-  "name": "@fidelisppm/tooltip",
-  "version": "1.0.1",
+  "name": "@fidelisppm/section-title",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
   },
   "author": "Chris Wilson <chris@legendserver.info>",
-  "description": "Display a tooltip to a user when they hover over some DOM object",
+  "description": "A string of text with an underline which spans the full width of its container",
   "keywords": [
-    "tooltip",
-    "tip",
-    "popover"
+    "string toggler",
+    "string",
+    "toggle"
   ],
   "license": "SEE LICENSE IN GIT REPO",
   "scripts": {
