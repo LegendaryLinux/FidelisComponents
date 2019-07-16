@@ -1,10 +1,11 @@
 {
   "name": "@fidelisppm/section-title",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
   },
+  "main": "index.js",
   "author": "Chris Wilson <chris@legendserver.info>",
   "description": "A string of text with an underline which spans the full width of its container",
   "keywords": [

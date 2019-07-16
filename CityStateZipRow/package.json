@@ -1,10 +1,11 @@
 {
   "name": "@fidelisppm/city-state-zip-row",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
   },
+  "main": "index.js",
   "author": "Chris Wilson <chris@legendserver.info>",
   "description": "An input for city, a select for state, and an input for zip in a single horizontal row",
   "keywords": [

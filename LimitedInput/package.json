@@ -1,10 +1,11 @@
 {
   "name": "@fidelisppm/limited-input",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
   },
+  "main": "index.js",
   "author": "Chris Wilson <chris@legendserver.info>",
   "description": "A set of <input> components which restrict the user's input in various ways",
   "keywords": [

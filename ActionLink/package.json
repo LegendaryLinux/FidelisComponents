@@ -1,10 +1,11 @@
 {
   "name": "@fidelisppm/action-link",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
   },
+  "main": "index.js",
   "author": "Chris Wilson <chris@legendserver.info>",
   "description": "A clickable vertical ellipsis which displays a popover to the user. Intended to display actions.",
   "keywords": [

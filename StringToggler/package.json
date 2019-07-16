@@ -1,10 +1,11 @@
 {
   "name": "@fidelisppm/string-toggler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
   },
+  "main": "index.js",
   "author": "Chris Wilson <chris@legendserver.info>",
   "description": "A component which renders two strings of text and will toggle between them when clicked.",
   "keywords": [

@@ -33,6 +33,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname),
-		filename: "[name].js"
+		filename: "[name].js",
+		libraryTarget: 'commonjs2',
 	}
 };

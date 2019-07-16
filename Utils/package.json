@@ -1,10 +1,11 @@
 {
   "name": "@fidelisppm/utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
   },
+  "main": "index.js",
   "author": "Chris Wilson <chris@legendserver.info>",
   "description": "Miscellaneous helper methods to make life a bit simpler",
   "keywords": [

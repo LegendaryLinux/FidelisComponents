@@ -4,6 +4,7 @@ import { map as _map, forEach as _forEach, isUndefined as _isUndefined } from 'l
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
 import '../styles/PaginatedTable.scss';
+import '../styles/tables.scss';
 
 class PaginatedTable extends Component {
 	constructor(props) {
