@@ -1,6 +1,7 @@
 .paginated-table-container{
   @import '~@fidelisppm/fidelis-styles/styles/mixins';
   @import '~@fidelisppm/fidelis-styles/styles/colors';
+  @import '~@fidelisppm/fidelis-styles/styles/buttons';
   font-family: 'PT Sans', 'sans-serif';
 
   @include border-radius(4px);

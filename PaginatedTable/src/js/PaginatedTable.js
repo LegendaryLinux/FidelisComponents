@@ -181,7 +181,7 @@ class PaginatedTable extends Component {
 			const firstPage = (
 				<button
 					key={this.genUUID()}
-					className="paginated-table-pagination-button button-default"
+					className="paginated-table-pagination-button fidelis-button-default"
 					onClick={() => { this.goToPage(1); }}
 				><FontAwesomeIcon icon={faBackward} />
 				</button>
@@ -195,7 +195,7 @@ class PaginatedTable extends Component {
 				const thisPage = (
 					<button
 						key={this.genUUID()}
-						className="paginated-table-pagination-button button-default"
+						className="paginated-table-pagination-button fidelis-button-default"
 						onClick={() => { this.goToPage(i); }}
 					>{i}
 					</button>
@@ -208,7 +208,7 @@ class PaginatedTable extends Component {
 			<button
 				key={this.genUUID()}
 				id="paginated-table-current-page-button"
-				className="paginated-table-pagination-button button-primary"
+				className="paginated-table-pagination-button fidelis-button-primary"
 			>{this.state.currentPage}
 			</button>
 		);
@@ -220,7 +220,7 @@ class PaginatedTable extends Component {
 				const thisPage = (
 					<button
 						key={this.genUUID()}
-						className="paginated-table-pagination-button button-default"
+						className="paginated-table-pagination-button fidelis-button-default"
 						onClick={() => { this.goToPage(i); }}
 					>{i}
 					</button>
@@ -235,7 +235,7 @@ class PaginatedTable extends Component {
 			const lastPage = (
 				<button
 					key={this.genUUID()}
-					className="paginated-table-pagination-button button-default"
+					className="paginated-table-pagination-button fidelis-button-default"
 					onClick={() => { this.goToPage(this.getTotalPages()); }}
 				><FontAwesomeIcon icon={faForward} />
 				</button>
