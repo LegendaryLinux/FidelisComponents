@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { forEach as _forEach } from 'lodash-es';
+import _forEach from 'lodash-es/forEach';
 import MaskedInput from "react-text-mask";
 import '../styles/LimitedInput.scss';
 

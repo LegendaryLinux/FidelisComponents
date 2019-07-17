@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { map as _map, forEach as _forEach, isUndefined as _isUndefined } from 'lodash-es';
+import _forEach from 'lodash-es/forEach';
+import _map from 'lodash-es/map';
+import _isUndefined from 'lodash-es/isUndefined';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
 import '../styles/PaginatedTable.scss';

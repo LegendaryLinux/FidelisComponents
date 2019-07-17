@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { map as _map } from 'lodash-es';
+import _map from 'lodash-es/map';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/pro-solid-svg-icons';
 import Popover from '@fidelisppm/popover';
