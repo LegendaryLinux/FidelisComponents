@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -20,7 +20,7 @@
     "dev": "webpack --watch --mode development"
   },
   "dependencies": {
-    "@fidelisppm/banner-message": "^1.0.1",
+    "@fidelisppm/banner-message": "^1.0.3",
     "lodash-es": "^4.17.14",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
@@ -42,7 +42,7 @@
     "path": "^0.12.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5"
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
   }
 }

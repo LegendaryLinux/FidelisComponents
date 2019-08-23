@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/popover",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -14,17 +14,17 @@
   ],
   "license": "SEE LICENSE IN GIT REPO",
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack --watch --mode development"
+    "build": "webpack --mode production --config webpack.config.js",
+    "dev": "webpack --watch --mode development --config webpack.config.dev.js"
   },
   "dependencies": {
     "prop-types": "latest",
     "react": "^16.8.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
@@ -32,9 +32,10 @@
     "css-loader": "^2.1.1",
     "node-sass": "^4.12.0",
     "path": "^0.12.7",
+    "react-dom": "^16.9.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5"
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
   }
 }

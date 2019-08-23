@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/city-state-zip-row",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -20,8 +20,8 @@
     "dev": "webpack --watch --mode development"
   },
   "dependencies": {
-    "@fidelisppm/limited-input": "^1.0.1",
-    "@fidelisppm/utils": "^1.0.2",
+    "@fidelisppm/limited-input": "^1.0.3",
+    "@fidelisppm/utils": "^1.0.4",
     "prop-types": "latest",
     "react": "^16.8.6"
   },
@@ -38,7 +38,7 @@
     "path": "^0.12.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5"
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
   }
 }
