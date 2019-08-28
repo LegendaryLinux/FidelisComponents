@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/fidelis-styles",
-  "version": "1.0.3",
+  "version": "2.0.1",
   "description": "A set of styles used with components written for Fidelis PPM",
   "main": "src/js/styles.js",
   "scripts": {

@@ -1,5 +1,26 @@
-@import 'colors';
 @import 'mixins';
+
+/* Button Colors */
+$fidelis-btn-primary-bg:                    #ee9f3f;
+$fidelis-btn-primary-border:                #dc8c21;
+$fidelis-btn-primary-highlight:             #dc8c21;
+$fidelis-btn-primary-text:                  #ffffff;
+
+$fidelis-btn-secondary-bg:                  #53b141;
+$fidelis-btn-secondary-border:              #2e8c1b;
+$fidelis-btn-secondary-highlight:           #2e8c1b;
+$fidelis-btn-secondary-text:                #ffffff;
+
+$fidelis-btn-secondary-disabled-bg:         #a3d39a;
+$fidelis-btn-secondary-disabled-border:     #91c188;
+$fidelis-btn-secondary-disabled-highlight:  #91c188;
+$fidelis-btn-secondary-disabled-text:       #ffffff;
+
+$fidelis-btn-danger-bg:                     #ff0000;
+$fidelis-btn-danger-border:                 #e60000;
+$fidelis-btn-danger-highlight:              #e60000;
+$fidelis-btn-danger-disabled:               #aa0000;
+$fidelis-btn-danger-text:                   #ffffff;
 
 @mixin fidelis-button-base($font-weight: bold) {
 	padding: 12px 18px;
@@ -15,11 +36,11 @@
 }
 
 @mixin fidelis-button-gen($border-color: #dadada,
-	$bg-color: $fidelis-gray,
+	$bg-color: #ececec,
 	$hl-color: #dadada,
 	$text-color: rgb(0,0,0),
-	$disabled-color: $fidelis-disabled,
-	$disabled-border: $fidelis-light-gray) {
+	$disabled-color: #dddddd,
+	$disabled-border: #f2f3f4) {
 
 	background-color: $bg-color;
 	border: 1px solid $border-color;
@@ -99,5 +120,5 @@
 	justify-content: left;
 	text-decoration: none;
 	@include border-radius(4px);
-	@include fidelis-button-gen(#808080, $fidelis-blue, $fidelis-blue-highlight, white);
+	@include fidelis-button-gen(#808080, #009cd1, #009ed8, white);
 }

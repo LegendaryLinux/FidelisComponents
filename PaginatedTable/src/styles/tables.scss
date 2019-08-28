@@ -1,9 +1,14 @@
-@import '~@fidelisppm/fidelis-styles/styles/colors';
-@import '~@fidelisppm/fidelis-styles/styles/mixins';
+@import '~@fidelisppm/fidelis-styles/mixins';
+
+/* Tables, rows, and columns */
+$table-header-background: #f0f0ee;
+$table-row-background: #ffffff;
+$table-row-highlight: #f8f9f9;
+$table-border-color: #d3d3d3;
 
 .paginated-table-container {
   table{
-    border: 1px solid $fidelis-gray;
+    border: 1px solid #ececec;
     @include border-radius(4px);
     align-items: center;
     vertical-align: center;

@@ -1,12 +1,17 @@
 .paginated-table-container{
-  @import '~@fidelisppm/fidelis-styles/styles/mixins';
-  @import '~@fidelisppm/fidelis-styles/styles/colors';
-  @import '~@fidelisppm/fidelis-styles/styles/buttons';
+  /* Tables, rows, and columns */
+  $table-header-background: #f0f0ee;
+  $table-row-background: #ffffff;
+  $table-row-highlight: #f8f9f9;
+  $table-border-color: #d3d3d3;
+
+  @import '~@fidelisppm/fidelis-styles/mixins';
+  @import '~@fidelisppm/fidelis-styles/buttons';
   font-family: 'PT Sans', 'sans-serif';
 
   @include border-radius(4px);
-  @include box-shadow(1px,1px,1px,1px,$fidelis-gray);
-  background-color: $fidelis-white;
+  @include box-shadow(1px,1px,1px,1px,#ececec);
+  background-color: #ffffff;
   padding: 1em auto;
   width: 100%;
 
@@ -17,7 +22,7 @@
     .paginated-table{
       @include border-top-radius(4px);
       width: 100%;
-      border: 1px solid $fidelis-gray;
+      border: 1px solid #ececec;
       align-items: center;
       vertical-align: center;
       border-spacing: 0;
@@ -50,7 +55,7 @@
         padding-left: 1em;
         padding-right: 1em;
         text-align: left;
-        border-bottom: 1px solid $fidelis-gray;
+        border-bottom: 1px solid #ececec;
       }
 
       .is-sortable:hover{
@@ -77,9 +82,9 @@
     }
 
     .is-active{
-      background-color: $fidelis-blue-highlight;
+      background-color: #009ed8;
       font-weight: bolder;
-      color: $fidelis-white;
+      color: #ffffff;
     }
   }
 }

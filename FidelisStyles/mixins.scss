@@ -1,4 +1,13 @@
-@import 'colors';
+/* Modal Colors */
+$modal-background: #ffffff;
+$modal-border-color: #d3d3d3;
+$fidelis-modal-title-color: #202020;
+$fidelis-modal-heading-color: #202020;
+$fidelis-modal-label-color: #202020;
+$fidelis-modal-font-color: #808080;
+$fidelis-modal-instructions-color: #808080;
+$fidelis-modal-footer-background-color: #fbfbfb;
+$fidelis-modal-footer-border-top: #d7d7d7;
 
 @mixin pt-sans-font-face() {
 	font-family: 'PT Sans', 'sans-serif' !important;
@@ -8,9 +17,9 @@
 }
 
 @mixin colorOverride() {
-	$grey: $fidelis-gray;
-	$orange: $fidelis-orange;
-	$blue: $fidelis-blue;
+	$grey: #ececec;
+	$orange: #ee9f3f;
+	$blue: #009cd1;
 }
 
 @mixin box-shadow($top, $left, $blur, $spread, $color, $inset: false) {
@@ -30,8 +39,8 @@
 	}
 
 	margin: 1em auto;
-	background-color: $fidelis-white;
-	border: 1px solid lightgrey;
+	background-color: #ffffff;
+	border: 1px solid #d3d3d3;
 	border-top: 5px solid #025d93;
 	overflow: hidden;
 }

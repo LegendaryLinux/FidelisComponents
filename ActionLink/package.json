@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/action-link",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -19,16 +19,15 @@
     "dev": "webpack --watch --mode development"
   },
   "dependencies": {
-    "@fidelisppm/fidelis-styles": "^1.0.3",
-    "@fidelisppm/popover": "^1.0.1",
-    "@fidelisppm/utils": "^1.0.4",
+    "@fidelisppm/popover": "^1.0.4",
+    "@fidelisppm/utils": "^1.0.5",
     "prop-types": "latest",
-    "react": "^16.8.6"
+    "react": "^16.9.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.0",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
@@ -36,9 +35,9 @@
     "css-loader": "^2.1.1",
     "node-sass": "^4.12.0",
     "path": "^0.12.7",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.36.1",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   }
 }

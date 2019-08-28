@@ -1,13 +1,11 @@
-@import '~@fidelisppm/fidelis-styles/styles/colors';
-
 .fidelis-limited-input{
   display: inline-block;
 
   .fidelis-limited-input-red-border{
-    border-color: $fidelis-input-border-color-danger;
+    border-color: #ff0000;
   }
 
   .fidelis-limited-input-red-text{
-    color: $fidelis-danger;
+    color: #ff0000;
   }
 }
