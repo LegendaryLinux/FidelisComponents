@@ -5,6 +5,7 @@ import _map from 'lodash-es/map';
 import _isUndefined from 'lodash-es/isUndefined';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
+import HTTPaginatedTable from './HTTPaginatedTable';
 import '../styles/PaginatedTable.scss';
 import '../styles/tables.scss';
 
@@ -24,7 +25,7 @@ class PaginatedTable extends Component {
 		this.attemptSort(this.props);
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (this.props === nextProps) { return; }
 
 		this.setState({
@@ -51,6 +52,7 @@ class PaginatedTable extends Component {
 			_forEach(source.headers, (header) => {
 				if (header.key === source.initialSortKey) {
 					allowInitialSort = true;
+					return false;
 				}
 			});
 		}
@@ -284,3 +286,4 @@ PaginatedTable.defaultProps = {
 };
 
 export default PaginatedTable;
+export {HTTPaginatedTable};

@@ -8,6 +8,8 @@ A paginated table made in React/ES6.
 - Null values automatically replaced by hyphens!
 - Automatic formatting of phone numbers!
 - Looks fancy!
+- **Now includes a second component,** `HTTPaginatedTable`, which fetches
+its data from a function you specify!
 
 ## Props
 
@@ -89,5 +91,69 @@ total number of pages, the last page will be displayed. Defaults to 1.
 ## How to use it
 In your React app, import `PaginatedTable` and use it in your `render` function.
 ```
+import PaginatedTable from '@fidelisppm/paginated-table';
+...
 <PaginatedTable headers={exampleHeaders} dataRows={exampleRows} />
+``` 
+
+# HTTPaginatedTable
+A variant on PaginatedTable which pulls its data from a Promise
+you provide.
+
+## Props
+
+### `headers`
+See `PaginatedTable` component.
+
+### `initialSortKey`
+See `PaginatedTable` component.
+
+### `initialSortAsc`
+See `PaginatedTable` component.
+
+### `allowSorting`
+An optional prop which accepts a boolean that can be used to disable all
+sorting functionality. Defaults to `false`, causing sorting to be disabled
+by default in this component.
+
+### `initialPage`
+An optional prop which accepts an integer indicating which page the table
+should request initially. Defaults to `1`.
+
+### `loadingComponent`
+An optional prop which accepts a React component which will be displayed
+while the table is loading data. If not provided, a generic loading indicator
+will be shown instead.
+
+### `fetchPageData`
+A mandatory prop which accepts a function which returns a Promise. The
+function will be provided three arguments:  
+- **pageNum**: Integer. The page to retrieve
+- **sortValue**: String. A `key` from the objects provided in the `headers` prop
+- **sortAsc**: Boolean. Indicates if the sorted data should be in ascending order
+
+The function should return a promise which resolves into an object:
+
+Example function:
+```js
+const fetchPageData = (pageNum, sortValue, sortAsc) => {
+  return new Promise((resolve, reject) => {
+    ...
+    resolve({
+      pageCount: 6,
+      data: [
+        // See dataRows prop from PaginatedTable
+      ]
+    });
+  });
+}
+```
+
+## How to use it
+In your React app, import `{ HTTPaginatedTable }` and use it in
+your `render` function.
+```
+import { HTTPaginatedTable } from '@fidelisppm/paginated-table';
+...
+<HTTPaginatedTable headers={exampleHeaders} dataRows={exampleRows} />
 ``` 

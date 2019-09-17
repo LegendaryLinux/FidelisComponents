@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/paginated-table",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -15,11 +15,12 @@
     "pages"
   ],
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack --watch --mode development"
+    "build": "webpack --config webpack.config.js --mode production",
+    "dev": "webpack --config webpack.config.dev.js --watch --mode development"
   },
   "dependencies": {
     "@fidelisppm/fidelis-styles": "^2.0.1",
+    "@fidelisppm/utils": "^1.0.6",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "latest",
@@ -29,9 +30,9 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.6.0",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "babel": "^6.23.0",
     "babel-loader": "^8.0.6",
@@ -41,7 +42,7 @@
     "path": "^0.12.7",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
   }
 }
