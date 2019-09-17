@@ -33,7 +33,6 @@ class HTTPaginatedTable extends Component {
 		const newData = this.props.fetchPageData(page, this.state.sortValue, this.state.sortAscending);
 		this.setState({ showLoading: true, currentPage: page }, () => {
 			newData.then((data) => {
-				console.log(data);
 				this.setState({
 					showLoading: false,
 					pageCount: data.pageCount,
