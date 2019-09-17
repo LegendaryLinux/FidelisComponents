@@ -105,13 +105,13 @@ const data = [
 const fetchDataSlowly = (page) => {
 	switch(page){
 		case 1: return new Promise((resolve, reject) => {
-			setTimeout(() => {resolve({pageCount:3, data:data.slice(0,5)})},5000)
+			setTimeout(() => {resolve({headers, pageCount:3, data:data.slice(0,5)})},5000)
 		});
 		case 2: return new Promise((resolve, reject) => {
-			setTimeout(() => {resolve({pageCount:3, data:data.slice(5,10)})},5000)
+			setTimeout(() => {resolve({headers, pageCount:3, data:data.slice(5,10)})},5000)
 		});
 		case 3: return new Promise((resolve, reject) => {
-			setTimeout(() => {resolve({pageCount:3, data:data.slice(10,15)})},5000)
+			setTimeout(() => {resolve({headers, pageCount:3, data:data.slice(10,15)})},5000)
 		});
 		default: return null;
 	}
@@ -122,7 +122,7 @@ const App = () => (
 		<h3>PaginatedTable</h3>
 		<PaginatedTable dataRows={data} headers={headers} />
 		<h3>HTTPaginatedTable (5s delay)</h3>
-		<HTTPaginatedTable fetchPageData={fetchDataSlowly} headers={headers} />
+		<HTTPaginatedTable fetchPageData={fetchDataSlowly} />
 	</div>
 );
 

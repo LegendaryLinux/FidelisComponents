@@ -102,9 +102,6 @@ you provide.
 
 ## Props
 
-### `headers`
-See `PaginatedTable` component.
-
 ### `initialSortKey`
 See `PaginatedTable` component.
 
@@ -133,18 +130,20 @@ function will be provided three arguments:
 - **sortAsc**: Boolean. Indicates if the sorted data should be in ascending order
 
 The function should return a promise which resolves into an object:
+```js
+const pageDataObject = {
+  pageCount: 6, // Total number of pages available in result set
+  headers: [], // See headers prop from PaginatedTable
+  data: [], // See dataRows prop from PaginatedTable
+};
+```
 
 Example function:
 ```js
 const fetchPageData = (pageNum, sortValue, sortAsc) => {
   return new Promise((resolve, reject) => {
-    ...
-    resolve({
-      pageCount: 6,
-      data: [
-        // See dataRows prop from PaginatedTable
-      ]
-    });
+    // Some code here
+    resolve(pageDataObject);
   });
 }
 ```
@@ -155,5 +154,5 @@ your `render` function.
 ```
 import { HTTPaginatedTable } from '@fidelisppm/paginated-table';
 ...
-<HTTPaginatedTable headers={exampleHeaders} dataRows={exampleRows} />
+<HTTPaginatedTable dataRows={exampleRows} />
 ``` 

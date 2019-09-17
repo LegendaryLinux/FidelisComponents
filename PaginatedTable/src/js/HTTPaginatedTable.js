@@ -15,8 +15,10 @@ class HTTPaginatedTable extends Component {
 		super(props);
 
 		this.state = {
+			headers: [],
 			dataRows: [],
 			pageCount: 1,
+			tableInitialized: false,
 			showLoading: false,
 			currentPage: null,
 			sortValue: this.props.initialSortKey,
@@ -35,7 +37,9 @@ class HTTPaginatedTable extends Component {
 			newData.then((data) => {
 				this.setState({
 					showLoading: false,
+					tableInitialized: true,
 					pageCount: data.pageCount,
+					headers: data.headers,
 					dataRows: data.data
 				});
 			}).catch((error) => {
@@ -45,7 +49,7 @@ class HTTPaginatedTable extends Component {
 	};
 
 	makeHeader = () => {
-		const headerColumns = _map((this.props.headers), (column) => {
+		const headerColumns = _map((this.state.headers), (column) => {
 			let sortArrow = null;
 			if (this.state.sortValue === column.key) {
 				if (this.state.sortAscending) {
@@ -83,7 +87,7 @@ class HTTPaginatedTable extends Component {
 		// Loop over each row we are attempting to add
 		_forEach(this.state.dataRows, (row) => {
 			// Loop over each of the specified headers we are to include
-			const displayedColumns = _map(this.props.headers, (column) => {
+			const displayedColumns = _map(this.state.headers, (column) => {
 				if (typeof (row[column.key]) === 'undefined') {
 					throw new Error(`Attempted to access dataRows key which does not exist: ${column.key}`);
 				}
@@ -208,6 +212,14 @@ class HTTPaginatedTable extends Component {
 	};
 
 	render() {
+		if(!this.state.tableInitialized && this.state.showLoading){
+			return (
+				<div className="paginated-table-container">
+					<Loading />
+				</div>
+			);
+		}
+
 		return (
 			<div className="paginated-table-container">
 				<div className="paginated-table-wrapper">
@@ -232,7 +244,6 @@ class HTTPaginatedTable extends Component {
 }
 
 HTTPaginatedTable.propTypes = {
-	headers: PropTypes.array.isRequired,
 	initialSortKey: PropTypes.string,
 	initialSortAsc: PropTypes.bool,
 	allowSorting: PropTypes.bool,

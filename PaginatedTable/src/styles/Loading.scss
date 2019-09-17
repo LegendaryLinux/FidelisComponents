@@ -5,11 +5,12 @@
   }
 
   width: 100%;
-  margin-top: 0.5em;
   text-align: center;
-  font-size: 1.75em;
 
   svg{
+    font-size: 2.5em;
+    margin: 0.5em;
+
     animation: spin 2.5s infinite;
     -webkit-animation: spin 2.5s infinite;
     -moz-animation: spin 2.5s infinite;
