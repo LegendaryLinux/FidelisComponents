@@ -154,5 +154,5 @@ your `render` function.
 ```
 import { HTTPaginatedTable } from '@fidelisppm/paginated-table';
 ...
-<HTTPaginatedTable dataRows={exampleRows} />
+<HTTPaginatedTable fetchPageData={fetchPageData} />
 ``` 
