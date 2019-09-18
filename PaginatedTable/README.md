@@ -102,6 +102,11 @@ you provide.
 
 ## Props
 
+### `headers`
+An optional prop which accepts an array of objects specified in the
+corresponding prop in `PaginatedTable` above. If not provided, the
+resolution of `fetchPageData` must provide a headers object.
+
 ### `initialSortKey`
 See `PaginatedTable` component.
 
@@ -133,7 +138,7 @@ The function should return a promise which resolves into an object:
 ```js
 const pageDataObject = {
   pageCount: 6, // Total number of pages available in result set
-  headers: [], // See headers prop from PaginatedTable
+  headers: [], // See headers prop from PaginatedTable, not required if prop is provided
   data: [], // See dataRows prop from PaginatedTable
 };
 ```

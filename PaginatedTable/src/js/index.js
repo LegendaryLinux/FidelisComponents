@@ -9,6 +9,13 @@ const headers = [
 	{ key: 'completed', name: 'Completed', center: false },
 ];
 
+const customHeaders = [
+	{ key: 'title', name: 'Game Name', center: false },
+	{ key: 'platform', name: 'System', center: false },
+	{ key: 'genre', name: 'Game Type', center: false },
+	{ key: 'completed', name: 'Did I Finish It?', center: false },
+];
+
 const data = [
 	{
 		title: 'The Legend of Zelda: A Link to the Past',
@@ -102,7 +109,7 @@ const data = [
 	},
 ];
 
-const fetchDataSlowly = (page) => {
+const fetchDataSlowly = (page, delay=5) => {
 	switch(page){
 		case 1: return new Promise((resolve, reject) => {
 			setTimeout(() => {resolve({headers, pageCount:3, data:data.slice(0,5)})},5000)
@@ -123,6 +130,8 @@ const App = () => (
 		<PaginatedTable dataRows={data} headers={headers} />
 		<h3>HTTPaginatedTable (5s delay)</h3>
 		<HTTPaginatedTable fetchPageData={fetchDataSlowly} />
+		<h3>HTTPaginatedTable (manual headers)</h3>
+		<HTTPaginatedTable fetchPageData={fetchDataSlowly} headers={customHeaders} />
 	</div>
 );
 

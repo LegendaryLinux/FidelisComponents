@@ -15,7 +15,7 @@ class HTTPaginatedTable extends Component {
 		super(props);
 
 		this.state = {
-			headers: [],
+			headers: this.props.headers ? this.props.headers : [],
 			dataRows: [],
 			pageCount: 1,
 			tableInitialized: false,
@@ -39,7 +39,7 @@ class HTTPaginatedTable extends Component {
 					showLoading: false,
 					tableInitialized: true,
 					pageCount: data.pageCount,
-					headers: data.headers,
+					headers: this.props.headers ? this.props.headers : data.headers,
 					dataRows: data.data
 				});
 			}).catch((error) => {
@@ -244,6 +244,7 @@ class HTTPaginatedTable extends Component {
 }
 
 HTTPaginatedTable.propTypes = {
+	headers: PropTypes.arrayOf(PropTypes.object),
 	initialSortKey: PropTypes.string,
 	initialSortAsc: PropTypes.bool,
 	allowSorting: PropTypes.bool,
@@ -253,6 +254,7 @@ HTTPaginatedTable.propTypes = {
 };
 
 HTTPaginatedTable.defaultProps = {
+	headers: null,
 	initialSortKey: null,
 	initialSortAsc: true,
 	allowSorting: false,
