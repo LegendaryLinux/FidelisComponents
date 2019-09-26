@@ -215,7 +215,7 @@ class HTTPaginatedTable extends Component {
 		if(!this.state.tableInitialized && this.state.showLoading){
 			return (
 				<div className="paginated-table-container">
-					<Loading />
+					{(this.props.loadingComponent === null) ? <Loading /> : this.props.loadingComponent}
 				</div>
 			);
 		}
