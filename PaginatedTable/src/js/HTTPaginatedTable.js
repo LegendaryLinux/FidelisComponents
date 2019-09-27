@@ -226,7 +226,7 @@ class HTTPaginatedTable extends Component {
 					{
 						this.state.showLoading ?
 							(
-								<div className="fidelis-paginated-table-loading">
+								<div className="paginated-table-loading">
 									{(this.props.loadingComponent === null) ? <Loading /> : this.props.loadingComponent}
 								</div>
 							) : (
