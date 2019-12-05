@@ -70,6 +70,12 @@ const Example = () => (
 		Dignissimos similique error laboriosam dolor qui sequi aut provident. Voluptatibus nobis quidem et quaerat ut.
 		Quo expedita laboriosam aut magnam pariatur consectetur. Rem quod illo laboriosam autem quia accusamus aut.
 		</p>
+
+		<FancySelect
+			options={selectOptions}
+			selected="scott"
+			handleOnChange={(val) => { console.log(val) }}
+		/>
 	</div>
 );
 

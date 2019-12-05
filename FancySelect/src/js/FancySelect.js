@@ -28,6 +28,9 @@ class FancySelect extends Component {
 			selected: 0,
 			optionsVisible: false,
 		};
+
+		this.selectRef = React.createRef();
+		this.optionsRef = React.createRef();
 	}
 
 	componentDidMount(){
@@ -52,7 +55,12 @@ class FancySelect extends Component {
 	toggleOptionsVisible = () => {
 		this.setState((prevState) => ({
 			optionsVisible: !prevState.optionsVisible,
-		}));
+		}),() => {
+			// If the options are visible, set their height appropriately
+			if (!this.state.optionsVisible) { return; }
+			const selectHeight = this.selectRef.current.offsetTop;
+			this.optionsRef.current.top = selectHeight+55+'px';
+		});
 	};
 
 	handleOptionClick = (optKey) => {
@@ -80,7 +88,7 @@ class FancySelect extends Component {
 	render() {
 		return (
 			<div className="fidelis-fancy-select-container">
-				<div className="fidelis-fancy-select-wrapper">
+				<div className="fidelis-fancy-select-wrapper" ref={this.selectRef}>
 					<div
 						className={`fidelis-fancy-select ${this.state.optionsVisible ? 'active' : null}`}
 						onClick={this.toggleOptionsVisible}
@@ -96,7 +104,7 @@ class FancySelect extends Component {
 				</div>
 				{
 					this.state.optionsVisible ? (
-						<div className="fidelis-fancy-select-options-container">
+						<div className="fidelis-fancy-select-options-container" ref={this.optionsRef}>
 							{this.generateOptions()}
 						</div>
 					) : null

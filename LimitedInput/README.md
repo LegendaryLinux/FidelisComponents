@@ -21,7 +21,7 @@ only when it is reached or exceeded. Defaults to false.
 `bottom` or `right`. Defaults to `bottom`. 
 
 ```jsx harmony
-import LimitedInput from 'limited-input';
+import LimitedInput from '@fidelisppm/limited-input';
 
 // In render function
 <LimitedInput
@@ -35,7 +35,7 @@ import LimitedInput from 'limited-input';
 Display an input which allows only digits to be entered
 
 ```jsx harmony
-import { NumberInput } from 'limited-input';
+import { NumberInput } from '@fidelisppm/limited-input';
 
 // In render function
 <NumberInput id="foo" className="bar"/>
@@ -46,7 +46,7 @@ Display an input allowing only digits to be entered, and show an adaptive
 hint in the text field in the form of a phone number format
 
 ```jsx harmony
-import { PhoneInput } from 'limited-input';
+import { PhoneInput } from '@fidelisppm/limited-input';
 
 // In render function
 <PhoneInput id="foo" className="bar"/>
@@ -57,7 +57,7 @@ Display an input allowing only digits to be entered, and show an adaptive
 hint in the text field in the form of a five-digit zip code
 
 ```jsx harmony
-import { ZipInput } from 'limited-input';
+import { ZipInput } from '@fidelisppm/limited-input';
 
 // In render function
 <ZipInput id="foo" className="bar"/>
