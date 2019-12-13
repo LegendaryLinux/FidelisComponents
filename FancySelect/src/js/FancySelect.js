@@ -52,14 +52,31 @@ class FancySelect extends Component {
 		this.props.handleOnChange(this.state.options[0].value);
 	}
 
+	closeOnOutsideClick = (event) => {
+		// If the user clicked on the FancySelect options, do nothing
+		if (event.target.classList.contains('fidelis-fancy-select-options-container') ||
+			event.target.classList.contains('fidelis-fancy-select-option')){
+			return;
+		}
+
+		// Close the select list otherwise
+		this.toggleOptionsVisible();
+	};
+
 	toggleOptionsVisible = () => {
 		this.setState((prevState) => ({
 			optionsVisible: !prevState.optionsVisible,
 		}),() => {
 			// If the options are visible, set their height appropriately
-			if (!this.state.optionsVisible) { return; }
+			if (!this.state.optionsVisible) {
+				document.removeEventListener('click', this.closeOnOutsideClick);
+				return;
+			}
 			const selectHeight = this.selectRef.current.offsetTop;
 			this.optionsRef.current.top = selectHeight+55+'px';
+
+			// Add an event listener to the DOM which will close the options list if the user clicks outside the list
+			document.addEventListener('click', this.closeOnOutsideClick)
 		});
 	};
 

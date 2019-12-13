@@ -16,6 +16,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background-color: #ffffff;
       width: 250px;
       height: 45px;
       padding-left: 15px;
@@ -50,6 +51,7 @@
       border-top-right-radius: 4px;
       border-bottom-right-radius: 4px;
       padding-left: 10px;
+      background-color: #ffffff;
 
       &.active{
         border-bottom-right-radius: 0;
