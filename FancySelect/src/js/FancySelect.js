@@ -104,11 +104,12 @@ class FancySelect extends Component {
 
 	render() {
 		return (
-			<div className="fidelis-fancy-select-container">
-				<div className="fidelis-fancy-select-wrapper" ref={this.selectRef}>
+			<div className="fidelis-fancy-select-container" style={{width: `${this.props.width}px`}}>
+				<div className="fidelis-fancy-select-wrapper" ref={this.selectRef} style={{width: `${this.props.width}px`}}>
 					<div
 						className={`fidelis-fancy-select ${this.state.optionsVisible ? 'active' : null}`}
 						onClick={this.toggleOptionsVisible}
+						style={{width: `${this.props.width - 30}px`}}
 					>{this.state.options[this.state.selected].name}
 					</div>
 					<div
@@ -121,8 +122,11 @@ class FancySelect extends Component {
 				</div>
 				{
 					this.state.optionsVisible ? (
-						<div className="fidelis-fancy-select-options-container" ref={this.optionsRef}>
-							{this.generateOptions()}
+						<div
+							className="fidelis-fancy-select-options-container"
+							ref={this.optionsRef}
+							style={{width: `${this.props.width - 2}px`}}
+						>{this.generateOptions()}
 						</div>
 					) : null
 				}
@@ -132,7 +136,7 @@ class FancySelect extends Component {
 }
 
 const fancySelectOptionsShape = {
-	name: PropTypes.string.isRequired,
+	name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number,]).isRequired,
 };
 
@@ -140,6 +144,11 @@ FancySelect.propTypes = {
 	options: PropTypes.arrayOf(PropTypes.shape(fancySelectOptionsShape)),
 	selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	handleOnChange: PropTypes.func.isRequired,
+	width: PropTypes.number,
+};
+
+FancySelect.defaultProps = {
+	width: 280,
 };
 
 export default FancySelect;

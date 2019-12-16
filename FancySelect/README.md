@@ -21,6 +21,10 @@ will be provided a single argument, being the `value` of the chosen object
 provided in the `options` prop. This function is automatically run when the
 component is first mounted.
 
+**width** (optional: number)  
+A number which defines the width in pixels of the FancySelect component and its
+options
+
 Example Usage
 -------------
 Install:

@@ -75,6 +75,7 @@ const Example = () => (
 			options={selectOptions}
 			selected="scott"
 			handleOnChange={(val) => { console.log(val) }}
+			width={500}
 		/>
 	</div>
 );
