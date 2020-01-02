@@ -31,7 +31,7 @@ class HTTPaginatedTable extends Component {
 	}
 
 	fetchPageData = (page) => {
-		if(this.state.showLoading || this.state.currentPage === page) { return; }
+		if(this.state.showLoading) { return; }
 		const newData = this.props.fetchPageData(page, this.state.sortValue, this.state.sortAscending);
 		this.setState({ showLoading: true, currentPage: page }, () => {
 			newData.then((data) => {
@@ -123,6 +123,7 @@ class HTTPaginatedTable extends Component {
 
 	updateSortOrder = (sortValue) => {
 		if(!this.props.allowSorting) { return; }
+		console.log(`${this.state.sortValue} VS ${sortValue}`);
 		if (this.state.sortValue === sortValue) {
 			this.setState({ sortValue, sortAscending: !this.state.sortAscending }, () => {
 				this.fetchPageData(this.state.currentPage)

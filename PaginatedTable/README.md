@@ -153,6 +153,23 @@ const fetchPageData = (pageNum, sortValue, sortAsc) => {
 }
 ```
 
+**Additional data filters:**  
+If you need to apply filters to the data beyond the builtin sorting functionality, and you need
+users to control those filters, you may use the parent component's state in your `fetchPageData`
+function. Since the parent state will not cause a re-render on the table, you should manually
+run the `HTTPaginatedTable` fetch function using a `ref` like so:
+```js
+// In parent component constructor
+this.exampleRef = React.createRef();
+
+// In a function in the parent component
+const currentRef = this.exampleRef.current;
+currentRef.fetchPageData(currentRef.state.currentPage);
+
+// In parent component render() function
+<HTTPaginatedTable ref={this.exampleRef} fetchPageData={fetchPageData} />
+```
+
 ## How to use it
 In your React app, import `{ HTTPaginatedTable }` and use it in
 your `render` function.

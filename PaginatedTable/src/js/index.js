@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PaginatedTable, { HTTPaginatedTable } from "./PaginatedTable";
 
@@ -109,31 +109,54 @@ const data = [
 	},
 ];
 
-const fetchDataSlowly = (page, delay=5) => {
+const fetchDataSlowly = (page, sortValue=null, sortAscending=null, delay=2) => {
+	const sortedData = data;
+	if (sortValue) {
+		sortedData.sort((a, b) => (
+			sortAscending ?
+				((a[sortValue] > b[sortValue]) ? 1 : (b[sortValue] > a[sortValue]) ? -1 : 0) :
+				((a[sortValue] > b[sortValue]) ? -1 : (b[sortValue] > a[sortValue]) ? 1 : 0)
+		));
+	}
+
 	switch(page){
 		case 1: return new Promise((resolve, reject) => {
-			setTimeout(() => {resolve({headers, pageCount:3, data:data.slice(0,5)})},5000)
+			setTimeout(() => {resolve({headers, pageCount:3, data:sortedData.slice(0,5)})},5000)
 		});
 		case 2: return new Promise((resolve, reject) => {
-			setTimeout(() => {resolve({headers, pageCount:3, data:data.slice(5,10)})},5000)
+			setTimeout(() => {resolve({headers, pageCount:3, data:sortedData.slice(5,10)})},5000)
 		});
 		case 3: return new Promise((resolve, reject) => {
-			setTimeout(() => {resolve({headers, pageCount:3, data:data.slice(10,15)})},5000)
+			setTimeout(() => {resolve({headers, pageCount:3, data:sortedData.slice(10,15)})},5000)
 		});
 		default: return null;
 	}
 };
 
-const App = () => (
-	<div>
-		<h3>PaginatedTable</h3>
-		<PaginatedTable dataRows={data} headers={headers} />
-		<h3>HTTPaginatedTable (5s delay)</h3>
-		<HTTPaginatedTable fetchPageData={fetchDataSlowly} />
-		<h3>HTTPaginatedTable (manual headers)</h3>
-		<HTTPaginatedTable fetchPageData={fetchDataSlowly} headers={customHeaders} />
-	</div>
-);
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this._child = React.createRef();
+	}
+
+	render() {
+		return (
+			<div>
+				<h3>PaginatedTable</h3>
+				<PaginatedTable dataRows={data} headers={headers} />
+				<h3>HTTPaginatedTable (2s delay)</h3>
+				<HTTPaginatedTable fetchPageData={fetchDataSlowly} />
+				<h3>HTTPaginatedTable (manual headers)</h3>
+				<HTTPaginatedTable fetchPageData={fetchDataSlowly} headers={customHeaders} />
+				<h3>
+					HTTPaginatedTable (sortable)
+					<button onClick={() => {this._child.current.fetchPageData(this._child.current.state.currentPage) }}>Force Re-render</button>
+				</h3>
+				<HTTPaginatedTable fetchPageData={fetchDataSlowly} allowSorting={true} ref={this._child} />
+			</div>
+		);
+	}
+}
 
 window.onload = () => {
 	ReactDOM.render(<App />,document.getElementById('app'));
