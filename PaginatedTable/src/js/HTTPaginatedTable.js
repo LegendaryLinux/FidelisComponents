@@ -30,7 +30,7 @@ class HTTPaginatedTable extends Component {
 		this.fetchPageData(this.props.initialPage);
 	}
 
-	fetchPageData = (page) => {
+	fetchPageData = (page=1) => {
 		if(this.state.showLoading) { return; }
 		const newData = this.props.fetchPageData(page, this.state.sortValue, this.state.sortAscending);
 		this.setState({ showLoading: true, currentPage: page }, () => {
@@ -136,8 +136,9 @@ class HTTPaginatedTable extends Component {
 	};
 
 	generatePaginationContainer = () => {
-		if (this.state.pageCount === 1) { return null; }
+		if (this.state.pageCount <= 1) { return null; }
 
+		// Possibly generate a button to access the first page of results, followed by an ellipsis
 		const paginationButtons = [];
 		if (this.state.currentPage > 4 && this.state.pageCount > 7) {
 			const firstPage = (
@@ -152,6 +153,7 @@ class HTTPaginatedTable extends Component {
 			paginationButtons.push(<span key={Utils.genUUID()}>&hellip;</span>);
 		}
 
+		// Generate up to three buttons preceding the current page
 		for (let i = (this.state.currentPage - 3); i < this.state.currentPage; i += 1) {
 			if (i > 0) {
 				const thisPage = (
@@ -166,6 +168,7 @@ class HTTPaginatedTable extends Component {
 			}
 		}
 
+		// Generate the button for the current page
 		const activeButton = (
 			<button
 				key={Utils.genUUID()}
@@ -176,6 +179,7 @@ class HTTPaginatedTable extends Component {
 		);
 		paginationButtons.push(activeButton);
 
+		// Generate buttons for up to three pages after the current page
 		const lastThree = [];
 		for (let i = (this.state.currentPage + 3); i > this.state.currentPage; i -= 1) {
 			if (i <= this.state.pageCount) {
@@ -192,6 +196,7 @@ class HTTPaginatedTable extends Component {
 		}
 		paginationButtons.push(lastThree.reverse());
 
+		// Possibly generate an ellipsis followed by button to access the last page of results
 		if (this.state.currentPage < (this.state.pageCount - 3) && this.state.pageCount > 7) {
 			paginationButtons.push(<span key={Utils.genUUID()}>&hellip;</span>);
 			const lastPage = (
