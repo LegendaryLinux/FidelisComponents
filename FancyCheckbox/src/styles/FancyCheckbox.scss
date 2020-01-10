@@ -1,0 +1,34 @@
+.fidelis-fancy-checkbox-wrapper{
+  display: inline-block;
+
+  .fidelis-fancy-checkbox{
+    user-select: none;
+
+    input[type=checkbox]{
+      position: absolute;
+      visibility: hidden;
+      cursor: pointer;
+    }
+
+    .fidelis-fancy-select-check{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background-color: #ffffff;
+      border: 1px solid #d7d7d7;
+      border-radius: 4px;
+
+      svg{
+        margin-left: auto;
+        margin-right: auto;
+        color: #ee9f3f;
+      }
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+}
