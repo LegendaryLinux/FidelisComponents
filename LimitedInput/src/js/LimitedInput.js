@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _forEach from 'lodash-es/forEach';
-import MaskedInput from "react-text-mask";
+import MaskedInput from 'react-text-mask';
 import '../styles/LimitedInput.scss';
 
 export default class LimitedInput extends Component {
@@ -58,9 +58,14 @@ export default class LimitedInput extends Component {
 			: 'fidelis-limited-input');
 
 	render() {
-		return (
+		return React.forwardRef((props, ref) => (
 			<div className={this.makeDivClass()}>
-				<input className={this.genInputClass()} onKeyUp={this.handleKeyUp} {...this.makeInputProps()} />
+				<input
+					className={this.genInputClass()}
+					onKeyUp={this.handleKeyUp}
+					ref={ref}
+					{...this.makeInputProps()}
+				/>
 				{
 					(this.props.alwaysShowLimit || (this.state.length > this.props.maxChars)) ?
 						(
@@ -71,7 +76,7 @@ export default class LimitedInput extends Component {
 						) : null
 				}
 			</div>
-		);
+		));
 	}
 }
 
@@ -112,28 +117,30 @@ export class NumberInput extends Component {
 	};
 
 	render() {
-		return (
-			<input type="number" onKeyDown={this.handleKeyDown} {...this.props} />
-		);
+		return React.forwardRef((props, ref) => {
+			return <input type="number" onKeyDown={this.handleKeyDown} {...props} ref={ref} />
+		});
 	}
 }
 
-export const PhoneInput = props => (
+export const PhoneInput = React.forwardRef((props, ref) => (
 	<MaskedInput
+		ref={ref}
 		{...props}
 		mask={['(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
 		showMask={false}
 		placeholder={props.placeholder ? props.placeholder : '(316) 555-1114'}
 		keepCharPositions={true}
 	/>
-);
+));
 
-export const ZipInput = props => (
+export const ZipInput = React.forwardRef((props, ref) => (
 	<MaskedInput
+		ref={ref}
 		{...props}
 		mask={[/\d/, /\d/, /\d/, /\d/, /\d/]}
 		showMask={false}
 		placeholder={props.placeholder ? props.placeholder : '52327'}
 		keepCharPositions={true}
 	/>
-);
+));
