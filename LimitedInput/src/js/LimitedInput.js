@@ -12,7 +12,7 @@ export default class LimitedInput extends Component {
 		};
 	}
 
-	componentWillMount = () => {
+	UNSAFE_componentWillMount = () => {
 		this.setState({ length: this.props.defaultValue ? this.props.defaultValue.length : 0 });
 	};
 
@@ -28,7 +28,6 @@ export default class LimitedInput extends Component {
 
 	handleKeyUp = (event) => {
 		this.setState({ length: parseInt(event.target.value.length, 10) });
-		this.props.onKeyUp(event);
 	};
 
 	positionSetup = () => {
@@ -58,12 +57,11 @@ export default class LimitedInput extends Component {
 			: 'fidelis-limited-input');
 
 	render() {
-		return React.forwardRef((props, ref) => (
+		return (
 			<div className={this.makeDivClass()}>
 				<input
 					className={this.genInputClass()}
 					onKeyUp={this.handleKeyUp}
-					ref={ref}
 					{...this.makeInputProps()}
 				/>
 				{
@@ -76,7 +74,7 @@ export default class LimitedInput extends Component {
 						) : null
 				}
 			</div>
-		));
+		);
 	}
 }
 
@@ -92,7 +90,7 @@ LimitedInput.defaultProps = {
 	alertPosition: 'bottom',
 };
 
-export class NumberInput extends Component {
+class NumberInputComponent extends Component {
 	handleKeyDown = (event) => {
 		const key = event.keyCode;
 		// Allow number line
@@ -117,30 +115,28 @@ export class NumberInput extends Component {
 	};
 
 	render() {
-		return React.forwardRef((props, ref) => {
-			return <input type="number" onKeyDown={this.handleKeyDown} {...props} ref={ref} />
-		});
+		return <input type="number" onKeyDown={this.handleKeyDown} {...this.props} ref={this.props.proxy} />
 	}
 }
 
-export const PhoneInput = React.forwardRef((props, ref) => (
+export const NumberInput = React.forwardRef((props, ref) => <NumberInputComponent proxy={ref} {...props} />);
+
+export const PhoneInput = (props) => (
 	<MaskedInput
-		ref={ref}
 		{...props}
 		mask={['(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
 		showMask={false}
 		placeholder={props.placeholder ? props.placeholder : '(316) 555-1114'}
 		keepCharPositions={true}
 	/>
-));
+);
 
-export const ZipInput = React.forwardRef((props, ref) => (
+export const ZipInput = (props) => (
 	<MaskedInput
-		ref={ref}
 		{...props}
 		mask={[/\d/, /\d/, /\d/, /\d/, /\d/]}
 		showMask={false}
 		placeholder={props.placeholder ? props.placeholder : '52327'}
 		keepCharPositions={true}
 	/>
-));
+);
