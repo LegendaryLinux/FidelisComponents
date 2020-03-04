@@ -24,9 +24,10 @@ class FancyCheckbox extends Component {
 			<div className={`fidelis-fancy-checkbox-wrapper ${this.props.className}`}>
 				<label className="fidelis-fancy-checkbox">
 					<input
-						id={this.props.id}
 						type="checkbox"
 						defaultChecked={this.props.checked}
+						value={this.props.value}
+						name={this.props.name}
 						onChange={this.handleOnChange}
 					/>
 					<span className="fidelis-fancy-select-check">
@@ -43,6 +44,8 @@ FancyCheckbox.propTypes = {
 	className: PropTypes.string,
 	checked: PropTypes.bool,
 	onChange: PropTypes.func,
+	value: PropTypes.string,
+	name: PropTypes.string,
 };
 
 FancyCheckbox.defaultProps = {
