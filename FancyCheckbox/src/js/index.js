@@ -23,7 +23,8 @@ class Example extends Component {
 			<div style={containerStyle}>
 				<FancyCheckbox id="one" value="1" name="one" /> Starts unchecked, no onChange<br/>
 				<FancyCheckbox checked={true} id="two" value="2" /> Starts checked, no onChange<br />
-				<FancyCheckbox onChange={this.handleChange} id="three" /> Starts unchecked, toggles message below
+				<FancyCheckbox onChange={this.handleChange} id="three" /> Starts unchecked, toggles message below<br />
+				<FancyCheckbox disabled={true} /> Disabled checkbox
 				<br /><br />
 				The box is { this.state.isChecked ? 'checked' : 'empty' }!
 			</div>
