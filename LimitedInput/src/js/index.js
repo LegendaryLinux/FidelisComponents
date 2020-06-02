@@ -7,9 +7,14 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.niRef = React.createRef();
+		this.state = {
+			enteredText: null,
+		};
 	}
 
 	controlNumberInput = (event) => this.niRef.current.value = event.target.value;
+
+	updateEnteredText = (event) => this.setState({ enteredText: event.target.value });
 
 	render() {
 		return (
@@ -18,7 +23,14 @@ class App extends Component {
 
 				<div className="input-wrapper">
 					Limited Input:<br />
-					<LimitedInput alwaysShowLimit={true} alertPosition="bottom" maxChars={16} />
+					<LimitedInput
+						alwaysShowLimit={true}
+						alertPosition="bottom"
+						maxChars={16}
+						onKeyUp={this.updateEnteredText}
+					/>
+					<br />
+					Content: {this.state.enteredText}
 				</div>
 
 				<div className="input-wrapper">

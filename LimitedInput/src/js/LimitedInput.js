@@ -28,6 +28,9 @@ export default class LimitedInput extends Component {
 
 	handleKeyUp = (event) => {
 		this.setState({ length: parseInt(event.target.value.length, 10) });
+		if (typeof(this.props.onKeyUp === 'function')) {
+			this.props.onKeyUp(event);
+		}
 	};
 
 	positionSetup = () => {
