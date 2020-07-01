@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/banner-message",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -33,7 +33,7 @@
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^2.1.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

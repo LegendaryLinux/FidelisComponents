@@ -25,17 +25,17 @@ class PaginatedTable extends Component {
 		this.attemptSort(this.props);
 	}
 
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		if (this.props === nextProps) { return; }
+	componentDidUpdate(prevProps) {
+		if (prevProps === this.props) { return; }
 
 		this.setState({
-			currentPage: nextProps.initialPage,
-			dataRows: nextProps.dataRows,
-			sortValue: nextProps.initialSortKey,
-			sortAscending: nextProps.initialSortAsc,
+			currentPage: this.props.initialPage,
+			dataRows: this.props.dataRows,
+			sortValue: this.props.initialSortKey,
+			sortAscending: this.props.initialSortAsc,
 		}, () => {
 			// Sort the data after assigning new props, or an initial sorting will never happen
-			this.attemptSort(nextProps);
+			this.attemptSort(this.props);
 		});
 	}
 
@@ -96,8 +96,8 @@ class PaginatedTable extends Component {
 		const displayedRows = [];
 		const startingIndex = (this.state.currentPage * this.props.entriesPerPage) -
 			this.props.entriesPerPage;
-		const endingIndex = ((parseInt(startingIndex, 10) +
-			parseInt(this.props.entriesPerPage, 10)) - 1);
+		const endingIndex = ((parseInt(startingIndex.toString(), 10) +
+			parseInt(this.props.entriesPerPage.toString(), 10)) - 1);
 
 		// Loop over each index of the row we are attempting to add
 		for (let i = startingIndex; i <= endingIndex; i += 1) {

@@ -8,13 +8,9 @@ export default class LimitedInput extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			length: 0,
+			length: props.defaultValue ? props.defaultValue.length : 0,
 		};
 	}
-
-	UNSAFE_componentWillMount = () => {
-		this.setState({ length: this.props.defaultValue ? this.props.defaultValue.length : 0 });
-	};
 
 	getSpanClass = () => (
 		(this.state.length > this.props.maxChars) ?
@@ -85,12 +81,14 @@ LimitedInput.propTypes = {
 	maxChars: PropTypes.number,
 	alwaysShowLimit: PropTypes.bool,
 	alertPosition: PropTypes.string,
+	defaultValue: PropTypes.string,
 };
 
 LimitedInput.defaultProps = {
 	maxChars: 64,
 	alwaysShowLimit: false,
 	alertPosition: 'bottom',
+	defaultValue: null,
 };
 
 class NumberInputComponent extends Component {
