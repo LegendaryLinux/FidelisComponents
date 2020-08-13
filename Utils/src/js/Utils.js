@@ -64,12 +64,16 @@ class Utils {
 		return this.states;
 	}
 
-	static getStateOptions() {
+	static getStateOptions(selected = []) {
 		const options = _map(Object.keys(this.states),
-			(state, id) => <option value={state} key={id}>{this.states[state]}</option>);
+			(state, id) => (
+				<option value={state} key={id} selected={selected.indexOf(state) !== -1}>
+					{this.states[state]}
+				</option>
+			));
 
 		return (
-			<optgroup label="United States">
+			<optgroup key="United States" label="United States">
 				{ options }
 			</optgroup>
 		);

@@ -7,9 +7,10 @@ Geographic State Methods
 Returns an object where keys are state abbreviations and values are full
 state names.
 
-**getStateOptions()**  
-Returns an `<optgroup>` populated with 
-`<option value="Alaska">Alaska</option>` etc.
+**getStateOptions(selected = [])**  
+Accepts an optional array of values and applies the "selected" attribute to all options whose value
+matches a value in the array. Returns an `<optgroup>` populated with `<option value="Alaska">Alaska</option>`
+etc.
 
 **getMiniStateOptions()**  
 Returns an array of `<option value="AL">AL</option>` etc.
