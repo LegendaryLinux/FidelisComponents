@@ -1,0 +1,22 @@
+.autocomplete-wrapper{
+  display: inline-block;
+
+  .autocomplete-input{
+
+  }
+
+  .autocomplete-options{
+    border: 1px solid black;
+    width: calc(100% - 2px);
+
+    .autocomplete-option{
+      padding: 7px;
+      cursor: pointer;
+      width: calc(100% - 14px);
+
+      &.highlighted{
+        background-color: #e7f5ff;
+      }
+    }
+  }
+}
