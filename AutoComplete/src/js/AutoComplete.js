@@ -62,9 +62,7 @@ class AutoComplete extends Component {
                 this.inputRef.current.value = this.state.options[this.state.highlightedKey].name;
                 this.props.onUpdate(this.state.options[this.state.highlightedKey].value);
                 this.setState({ inputValue: this.state.options[this.state.highlightedKey].name });
-            }
-
-            if (!this.props.allowUserValues) {
+            } else if (!this.props.allowUserValues) {
                 this.inputRef.current.value = '';
                 this.props.onUpdate(null);
                 this.setState({ inputValue: '' });
