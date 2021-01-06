@@ -14,9 +14,11 @@ class App extends Component {
 
     render() {
         return (
-            <div id="app" style={{margin: '1rem'}}>
-                Currently selected value: {this.state.selectedValue}
-                <br /><br />
+            <div id="app" style={{ margin: '1rem' }}>
+                AutoComplete with allowUserValues=false<br />
+                Current value: {this.state.value1}
+                <br />
+                <br />
                 <AutoComplete
                     options={[
                         { name: 'James T. Kirk', value: 'kirk' },
@@ -27,8 +29,37 @@ class App extends Component {
                         { name: 'Pavel Chekov', value: 'chekov' },
                         { name: 'Hikaru Sulu', value: 'sulu' },
                     ]}
-                    onUpdate={this.updateValue}
+                    onUpdate={(value1) => this.setState({ value1 })}
+                    allowUserValues={false}
                 />
+                <br />
+                <br />
+                <input placeholder="I'm a normal input for testing." />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                AutoComplete with allowUserValues=true<br />
+                Current value: {this.state.value2}
+                <br />
+                <br />
+                <AutoComplete
+                    options={[
+                        { name: 'Jean Luc Picard', value: 'picard' },
+                        { name: 'William T. Riker', value: 'riker' },
+                        { name: 'Data', value: 'data' },
+                        { name: 'Deanna Troi', value: 'troi' },
+                        { name: 'Beverley Crusher', value: 'crusher' },
+                        { name: 'Jeordi LaForge', value: 'laforge' },
+                    ]}
+                    onUpdate={(value2) => {this.setState({ value2 })}}
+                    allowUserValues={true}
+                />
+                <br />
+                <br />
+                <input placeholder="I'm a normal input for testing." />
             </div>
         );
     }

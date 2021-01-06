@@ -1,13 +1,13 @@
 .autocomplete-wrapper{
   display: inline-block;
 
-  .autocomplete-input{
-
-  }
-
   .autocomplete-options{
+    display: flex;
+    flex-direction: column;
     border: 1px solid black;
-    width: calc(100% - 2px);
+    position: absolute;
+    z-index: 100;
+    background-color: #ffffff;
 
     .autocomplete-option{
       padding: 7px;

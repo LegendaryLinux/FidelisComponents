@@ -6,39 +6,31 @@ import '../styles/AutoComplete.scss';
 class AutoComplete extends Component {
     constructor(props) {
         super(props);
+        this.wrapperRef = React.createRef();
         this.inputRef = React.createRef();
         this.state = {
             displayOptions: false,
             options: this.props.options,
             highlightedKey: 0,
+            inputValue: null,
         };
     }
 
-    handleInputFocus = () => {
-        console.log('1');
+    handleInputFocusOrClick = () => {
         this.setState({ displayOptions: true }, () => {
+            // TODO: Manually position the AutoSelect menu directly below the input box, and give it a positive z-index
             document.addEventListener('click', this.handleGlobalClick);
         });
-    }
-
-    handleInputBlur = () => {
-        // TODO: Disallow custom values by checking for a previously set value.
-        // If no value is set, set the last highlighted option as the new value
     };
 
-    // TODO: This has a race contition with handleInputFocus. Figure that out.
-    handleInputClick = (e) => {
-        if (!this.state.displayOptions) {
-            console.log('2')
-            this.setState({ displayOptions: true }, () => {
-                document.addEventListener('click', this.handleGlobalClick);
-            });
-        }
+    handleInputBlur = () => {
+        // On blur, ensure the value displayed in the text box matches the currently selected value
+        this.inputRef.current.value = this.state.inputValue || '';
     };
 
     handleGlobalClick = (e) => {
         // If the user clicks inside the input box, do nothing
-        if (e.target.classList.contains('autocomplete-input')) { return; }
+        if (e.target === this.inputRef.current) { return; }
 
         // If the user clicks an option, let the option's event handler run
         if (e.target.classList.contains('autocomplete-option')) { return; }
@@ -50,42 +42,71 @@ class AutoComplete extends Component {
 
     handleOptionClick = (e) => {
         this.props.onUpdate(e.target.getAttribute('data-value'));
-        this.inputRef.current.value = e.target.innerHTML;
+        this.inputRef.current.value = e.target.innerText;
         document.removeEventListener('click', this.handleGlobalClick);
         this.setState({
             displayOptions: false,
             highlightedKey: parseInt(e.target.getAttribute('data-key'), 10),
+            inputValue: e.target.innerText
         });
     };
 
     handleKeyDown = (e) => {
-        if (e.key === 'Tab') {
-            return;
-        }
-
-        if (e.key === 'Enter') {
-            this.inputRef.current.value = this.state.options[this.state.highlightedKey].name;
-            this.props.onUpdate(this.state.options[this.state.highlightedKey].value);
+        if (['Enter', 'Tab'].indexOf(e.key) !== -1) {
             this.setState({ displayOptions: false });
+        }
+
+        // If the user presses enter, they probably want to use a highlighted value in the list
+        if (e.key === 'Enter') {
+            if (this.state.options.length !== 0) {
+                this.inputRef.current.value = this.state.options[this.state.highlightedKey].name;
+                this.props.onUpdate(this.state.options[this.state.highlightedKey].value);
+                this.setState({ inputValue: this.state.options[this.state.highlightedKey].name });
+            }
+
+            if (!this.props.allowUserValues) {
+                this.inputRef.current.value = '';
+                this.props.onUpdate(null);
+                this.setState({ inputValue: '' });
+            }
             return;
         }
 
-        let newKey = this.state.highlightedKey;
-        if (e.key === 'ArrowUp') {
-            // Scroll up the list, or cycle to the bottom
-            if (this.state.highlightedKey === 0) { newKey = this.state.options.length - 1; }
-            else { --newKey; }
+        // If the user tabs out of the field, blank or fill the input box as appropriate
+        if (e.key === 'Tab') {
+            // If custom values are allowed, do nothing
+            if (this.props.allowUserValues) { return; }
+
+            if (this.state.options.length === 0) {
+                this.inputRef.current.value = '';
+                this.props.onUpdate(null);
+                this.setState({ inputValue: '' });
+            } else {
+                this.inputRef.current.value = this.state.options[this.state.highlightedKey].name;
+                this.props.onUpdate(this.state.options[this.state.highlightedKey].value);
+                this.setState({ inputValue: this.state.options[this.state.highlightedKey].name });
+            }
+            return;
         }
 
-        if (e.key === 'ArrowDown') {
-            // Scroll down the list, or cycle to the top
-            if (this.state.highlightedKey === (this.state.options.length - 1)) { newKey = 0; }
-            else { ++newKey; }
-        }
+        this.setState({ displayOptions: true }, () => {
+            let newKey = this.state.highlightedKey;
+            if (e.key === 'ArrowUp') {
+                // Scroll up the list, or cycle to the bottom
+                if (this.state.highlightedKey === 0) { newKey = this.state.options.length - 1; }
+                else { --newKey; }
+            }
 
-        if (newKey !== this.state.highlightedKey) {
-            this.setState({ highlightedKey: newKey });
-        }
+            if (e.key === 'ArrowDown') {
+                // Scroll down the list, or cycle to the top
+                if (this.state.highlightedKey === (this.state.options.length - 1)) { newKey = 0; }
+                else { ++newKey; }
+            }
+
+            if (newKey !== this.state.highlightedKey) {
+                this.setState({ highlightedKey: newKey });
+            }
+        });
     };
 
     handleKeyUp = (e) => {
@@ -101,9 +122,18 @@ class AutoComplete extends Component {
         });
 
         this.setState({ options, highlightedKey: 0 });
+
+        if (this.props.allowUserValues) {
+            this.props.onUpdate(e.target.value || null);
+            this.setState({ inputValue: e.target.value });
+        }
     }
 
     buildOptionsBox = () => {
+        const optionBoxStyle = {
+            width: `${this.wrapperRef.current.offsetWidth - 2}px`,
+        };
+
         const options = [];
         _forEach(this.state.options, (opt, key) => {
             const highlighted = parseInt(this.state.highlightedKey, 10) === parseInt(key, 10) ? 'highlighted' : '';
@@ -119,19 +149,21 @@ class AutoComplete extends Component {
             );
         });
 
-        return options.length > 0 ? (<div className="autocomplete-options">{options}</div>) : null;
+        return options.length > 0 ?
+            <div className="autocomplete-options" style={optionBoxStyle}>{options}</div>
+            : null;
     };
 
     render() {
         return (
-            <div className="autocomplete-wrapper">
+            <div className="autocomplete-wrapper" ref={this.wrapperRef}>
                 <input
                     type="text"
                     ref={this.inputRef}
                     className="autocomplete-input"
-                    onFocus={this.handleInputFocus}
+                    onClick={this.handleInputFocusOrClick}
+                    onFocus={this.handleInputFocusOrClick}
                     onBlur={this.handleInputBlur}
-                    onClick={this.handleInputClick}
                     onKeyUp={this.handleKeyUp}
                     onKeyDown={this.handleKeyDown}
                 />
@@ -149,6 +181,11 @@ AutoComplete.propTypes = {
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     })).isRequired,
     onUpdate: PropTypes.func.isRequired,
+    allowUserValues: PropTypes.bool,
+};
+
+AutoComplete.defaultProps = {
+    allowUserValues: true,
 };
 
 export default AutoComplete;

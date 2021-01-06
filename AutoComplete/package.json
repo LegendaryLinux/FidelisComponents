@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "author": "Chris Wilson <chris@legendserver.info>",
-  "description": "A custom AutoComplete component which does not accept user-defined values.",
+  "description": "A custom AutoComplete component optionally accepts user-defined values",
   "keywords": [
     "autocomplete",
     "auto-complete",
