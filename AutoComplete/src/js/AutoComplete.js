@@ -7,6 +7,7 @@ class AutoComplete extends Component {
     constructor(props) {
         super(props);
         this.wrapperRef = React.createRef();
+        this.optionBoxRef = React.createRef();
         this.inputRef = React.createRef();
         this.state = {
             displayOptions: false,
@@ -18,7 +19,6 @@ class AutoComplete extends Component {
 
     handleInputFocusOrClick = () => {
         this.setState({ displayOptions: true }, () => {
-            // TODO: Manually position the AutoSelect menu directly below the input box, and give it a positive z-index
             document.addEventListener('click', this.handleGlobalClick);
         });
     };
@@ -73,7 +73,7 @@ class AutoComplete extends Component {
         // If the user tabs out of the field, blank or fill the input box as appropriate
         if (e.key === 'Tab') {
             // If custom values are allowed, do nothing
-            if (this.props.allowUserValues) { return; }
+            if (this.props.allowUserValues || this.inputRef.current.value === '') { return; }
 
             if (this.state.options.length === 0) {
                 this.inputRef.current.value = '';
@@ -102,7 +102,12 @@ class AutoComplete extends Component {
             }
 
             if (newKey !== this.state.highlightedKey) {
-                this.setState({ highlightedKey: newKey });
+                this.setState({ highlightedKey: newKey }, () => {
+                    // Scroll the option into view the fancy way if possible, fallback to the less fnacy way
+                    this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded ?
+                        this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded(false) :
+                        this.optionBoxRef.current.childNodes[newKey].scrollIntoView();
+                });
             }
         });
     };
@@ -121,11 +126,15 @@ class AutoComplete extends Component {
 
         this.setState({ options, highlightedKey: 0 });
 
-        if (this.props.allowUserValues) {
+        if (this.props.allowUserValues || e.target.value === '') {
             this.props.onUpdate(e.target.value || null);
             this.setState({ inputValue: e.target.value });
         }
     }
+
+    handleOptionMouseIn = (e) => {
+        this.setState({ highlightedKey: parseInt(e.target.getAttribute('data-key'), 10) });
+    };
 
     buildOptionsBox = () => {
         const optionBoxStyle = {
@@ -141,6 +150,7 @@ class AutoComplete extends Component {
                     className={`autocomplete-option ${highlighted}`}
                     data-value={opt.value}
                     data-key={key}
+                    onMouseEnter={this.handleOptionMouseIn}
                     onClick={this.handleOptionClick}
                 >{opt.name}
                 </div>
@@ -148,7 +158,7 @@ class AutoComplete extends Component {
         });
 
         return options.length > 0 ?
-            <div className="autocomplete-options" style={optionBoxStyle}>{options}</div>
+            <div className="autocomplete-options" style={optionBoxStyle} ref={this.optionBoxRef}>{options}</div>
             : null;
     };
 

@@ -8,6 +8,8 @@
     position: absolute;
     z-index: 100;
     background-color: #ffffff;
+    max-height: 300px;
+    overflow-y: auto;
 
     .autocomplete-option{
       padding: 7px;
