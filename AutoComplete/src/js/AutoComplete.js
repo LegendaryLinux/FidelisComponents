@@ -37,7 +37,11 @@ class AutoComplete extends Component {
 
         // Remove the click event listener from the page and close the options box
         document.removeEventListener('click', this.handleGlobalClick);
-        this.setState({ displayOptions: false });
+        const optionSet = this.inputRef.current.value ? this.state.options : this.props.options;
+        this.setState({
+            displayOptions: false,
+            options: optionSet,
+        });
     };
 
     handleOptionClick = (e) => {
@@ -53,7 +57,7 @@ class AutoComplete extends Component {
 
     handleKeyDown = (e) => {
         if (['Enter', 'Tab'].indexOf(e.key) !== -1) {
-            this.setState({ displayOptions: false });
+            this.setState({ displayOptions: false, highlightedKey: 0 });
         }
 
         // If the user presses enter, they probably want to use a highlighted value in the list
@@ -87,23 +91,23 @@ class AutoComplete extends Component {
             return;
         }
 
+        let newKey = this.state.highlightedKey;
+        if (e.key === 'ArrowUp') {
+            // Scroll up the list, or cycle to the bottom
+            if (this.state.highlightedKey === 0) { newKey = this.state.options.length - 1; }
+            else { --newKey; }
+        }
+
+        if (e.key === 'ArrowDown') {
+            // Scroll down the list, or cycle to the top
+            if (this.state.highlightedKey === (this.state.options.length - 1)) { newKey = 0; }
+            else { ++newKey; }
+        }
+
         this.setState({ displayOptions: true }, () => {
-            let newKey = this.state.highlightedKey;
-            if (e.key === 'ArrowUp') {
-                // Scroll up the list, or cycle to the bottom
-                if (this.state.highlightedKey === 0) { newKey = this.state.options.length - 1; }
-                else { --newKey; }
-            }
-
-            if (e.key === 'ArrowDown') {
-                // Scroll down the list, or cycle to the top
-                if (this.state.highlightedKey === (this.state.options.length - 1)) { newKey = 0; }
-                else { ++newKey; }
-            }
-
             if (newKey !== this.state.highlightedKey) {
                 this.setState({ highlightedKey: newKey }, () => {
-                    // Scroll the option into view the fancy way if possible, fallback to the less fnacy way
+                    // Scroll the option into view the fancy way if possible, fallback to the less fancy way
                     this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded ?
                         this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded(false) :
                         this.optionBoxRef.current.childNodes[newKey].scrollIntoView();
