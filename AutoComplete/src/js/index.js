@@ -31,6 +31,8 @@ class App extends Component {
                     ]}
                     onUpdate={(value1) => this.setState({ value1 })}
                     allowUserValues={false}
+                    placeholder="Star Trek TOS Crew"
+                    defaultValue="mccoy"
                 />
                 <br />
                 <br />
@@ -56,6 +58,7 @@ class App extends Component {
                     ]}
                     onUpdate={(value2) => {this.setState({ value2 })}}
                     allowUserValues={true}
+                    placeholder="Star Trek TNG Crew"
                 />
                 <br />
                 <br />

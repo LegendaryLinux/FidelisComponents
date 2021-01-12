@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _forEach from 'lodash-es/forEach';
+import _cloneDeep from 'lodash-es/cloneDeep';
 import '../styles/AutoComplete.scss';
 
 class AutoComplete extends Component {
@@ -15,6 +16,27 @@ class AutoComplete extends Component {
             highlightedKey: 0,
             inputValue: null,
         };
+    }
+
+    componentDidMount() {
+        if (this.props.defaultValue) {
+            let matchFound = false;
+            _forEach(this.props.options, (opt, key) => {
+                if (this.props.defaultValue === opt.value || this.props.defaultValue === opt.name) {
+                    this.inputRef.current.value = opt.name;
+                    this.setState({ highlightedKey: key, inputValue: opt.name });
+                    this.props.onUpdate(opt.value);
+                    matchFound = true;
+                    return false;
+                }
+            });
+
+            if (!matchFound && this.props.allowUserValues) {
+                this.inputRef.current.value = this.props.defaultValue;
+                this.setState({ inputValue: this.props.defaultValue });
+                this.props.onUpdate(this.props.defaultValue);
+            }
+        }
     }
 
     handleInputFocusOrClick = () => {
@@ -56,7 +78,7 @@ class AutoComplete extends Component {
     };
 
     handleKeyDown = (e) => {
-        if (['Enter', 'Tab'].indexOf(e.key) !== -1) {
+        if (['Enter', 'Tab', 'Esc'].indexOf(e.key) !== -1) {
             this.setState({ displayOptions: false, highlightedKey: 0 });
         }
 
@@ -91,6 +113,14 @@ class AutoComplete extends Component {
             return;
         }
 
+        if (e.key === 'Escape') {
+            // If the user presses escape, blank the input field
+            this.inputRef.current.value = '';
+            this.props.onUpdate(null);
+            this.setState({ inputValue: '' });
+            return;
+        }
+
         let newKey = this.state.highlightedKey;
         if (e.key === 'ArrowUp') {
             // Scroll up the list, or cycle to the bottom
@@ -117,7 +147,7 @@ class AutoComplete extends Component {
     };
 
     handleKeyUp = (e) => {
-        if (['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','Tab','Shift'].indexOf(e.key) !== -1) { return; }
+        if (['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','Tab','Shift','Escape'].indexOf(e.key) !== -1) { return; }
         const options = [];
 
         _forEach(this.props.options, (opt) => {
@@ -166,22 +196,31 @@ class AutoComplete extends Component {
             : null;
     };
 
+    buildProps = () => {
+        // Clone props and remove custom props which should not appear in DOM
+        const props = {..._cloneDeep(this.props)};
+        delete props.onUpdate;
+        delete props.options;
+        delete props.allowUserValues;
+        delete props.key;
+
+        // defaultValue is handled in componentDidMount
+        delete props.defaultValue;
+
+        // Overwrite props assigned to input element with our own handlers, then run user-defined handlers afterward
+        props.onClick = (e) => {this.handleInputFocusOrClick(); this.props.onclick ? this.props.onclick(e) : null};
+        props.onFocus = (e) => {this.handleInputFocusOrClick(); this.props.onfocus ? this.props.onfocus(e) : null};
+        props.onBlur = (e) => {this.handleInputBlur(); this.props.onblur ? this.props.onblur(e) : null};
+        props.onKeyUp = (e) => {this.handleKeyUp(e); this.props.onkeyup ? this.props.onkeyup(e) : null};
+        props.onKeyDown = (e) => {this.handleKeyDown(e); this.props.onkeydown ? this.props.onkeydown(e) : null};
+        return props;
+    };
+
     render() {
         return (
             <div className="autocomplete-wrapper" ref={this.wrapperRef}>
-                <input
-                    type="text"
-                    ref={this.inputRef}
-                    className="autocomplete-input"
-                    onClick={this.handleInputFocusOrClick}
-                    onFocus={this.handleInputFocusOrClick}
-                    onBlur={this.handleInputBlur}
-                    onKeyUp={this.handleKeyUp}
-                    onKeyDown={this.handleKeyDown}
-                />
-                {
-                    this.state.displayOptions ? this.buildOptionsBox() : null
-                }
+                <input ref={this.inputRef} className="autocomplete-input" {...this.buildProps()} />
+                { this.state.displayOptions ? this.buildOptionsBox() : null }
             </div>
         );
     }
