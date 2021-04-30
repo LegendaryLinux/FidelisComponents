@@ -16,6 +16,7 @@ class App extends Component {
         return (
             <div id="app" style={{ margin: '1rem' }}>
                 AutoComplete with allowUserValues=false<br />
+                showListOnFocus=true<br />
                 Current value: {this.state.value1}
                 <br />
                 <br />
@@ -31,6 +32,7 @@ class App extends Component {
                     ]}
                     onUpdate={(value1) => this.setState({ value1 })}
                     allowUserValues={false}
+                    showListOnFocus={true}
                     placeholder="Star Trek TOS Crew"
                     defaultValue="mccoy"
                 />
@@ -44,6 +46,7 @@ class App extends Component {
                 <br />
                 <br />
                 AutoComplete with allowUserValues=true<br />
+                showListOnFocus=false<br />
                 Current value: {this.state.value2}
                 <br />
                 <br />
@@ -55,9 +58,11 @@ class App extends Component {
                         { name: 'Deanna Troi', value: 'troi' },
                         { name: 'Beverley Crusher', value: 'crusher' },
                         { name: 'Jeordi LaForge', value: 'laforge' },
+                        { name: 'Worf, Son of Mogh', value: 'worf' },
                     ]}
                     onUpdate={(value2) => {this.setState({ value2 })}}
                     allowUserValues={true}
+                    showListOnFocus={false}
                     placeholder="Star Trek TNG Crew"
                 />
                 <br />

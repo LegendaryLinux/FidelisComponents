@@ -40,6 +40,7 @@ class AutoComplete extends Component {
     }
 
     handleInputFocusOrClick = () => {
+        if (!this.props.showListOnFocus) { return; }
         this.setState({ displayOptions: true }, () => {
             document.addEventListener('click', this.handleGlobalClick);
         });
@@ -82,19 +83,16 @@ class AutoComplete extends Component {
             this.setState({ displayOptions: false, highlightedKey: 0 });
         }
 
-        // If the user presses enter, they probably want to use a highlighted value in the list
-        if (e.key === 'Enter') {
-            if (this.state.options.length !== 0) {
-                this.inputRef.current.value = this.state.options[this.state.highlightedKey].name;
-                this.props.onUpdate(this.state.options[this.state.highlightedKey].value);
-                this.setState({ inputValue: this.state.options[this.state.highlightedKey].name });
-            } else if (!this.props.allowUserValues) {
-                this.inputRef.current.value = '';
-                this.props.onUpdate(null);
-                this.setState({ inputValue: '' });
-            }
+        if (e.key === 'Escape') {
+            // If the user presses escape, blank the input field and hide the list
+            this.inputRef.current.value = '';
+            this.props.onUpdate(null);
+            this.setState({ displayOptions: false, inputValue: '' });
             return;
         }
+
+        // If the options list is not currently shown, there is nothing else to do
+        if (!this.state.displayOptions) { return; }
 
         // If the user tabs out of the field, blank or fill the input box as appropriate
         if (e.key === 'Tab') {
@@ -113,11 +111,17 @@ class AutoComplete extends Component {
             return;
         }
 
-        if (e.key === 'Escape') {
-            // If the user presses escape, blank the input field
-            this.inputRef.current.value = '';
-            this.props.onUpdate(null);
-            this.setState({ inputValue: '' });
+        // If the user presses enter, they probably want to use a highlighted value in the list
+        if (e.key === 'Enter') {
+            if (this.state.options.length !== 0) {
+                this.inputRef.current.value = this.state.options[this.state.highlightedKey].name;
+                this.props.onUpdate(this.state.options[this.state.highlightedKey].value);
+                this.setState({ inputValue: this.state.options[this.state.highlightedKey].name });
+            } else if (!this.props.allowUserValues) {
+                this.inputRef.current.value = '';
+                this.props.onUpdate(null);
+                this.setState({ inputValue: '' });
+            }
             return;
         }
 
@@ -134,16 +138,14 @@ class AutoComplete extends Component {
             else { ++newKey; }
         }
 
-        this.setState({ displayOptions: true }, () => {
-            if (newKey !== this.state.highlightedKey) {
-                this.setState({ highlightedKey: newKey }, () => {
-                    // Scroll the option into view the fancy way if possible, fallback to the less fancy way
-                    this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded ?
-                        this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded(false) :
-                        this.optionBoxRef.current.childNodes[newKey].scrollIntoView();
-                });
-            }
-        });
+        if (newKey !== this.state.highlightedKey) {
+            this.setState({ highlightedKey: newKey }, () => {
+                // Scroll the option into view the fancy way if possible, fallback to the less fancy way
+                this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded ?
+                    this.optionBoxRef.current.childNodes[newKey].scrollIntoViewIfNeeded(false) :
+                    this.optionBoxRef.current.childNodes[newKey].scrollIntoView();
+            });
+        }
     };
 
     handleKeyUp = (e) => {
@@ -159,6 +161,11 @@ class AutoComplete extends Component {
         });
 
         this.setState({ options, highlightedKey: 0 });
+        if (!this.state.displayOptions) {
+            this.setState({ displayOptions: true }, () => {
+                document.addEventListener('click', this.handleGlobalClick);
+            });
+        }
 
         if (this.props.allowUserValues || e.target.value === '') {
             this.props.onUpdate(e.target.value || null);
@@ -202,6 +209,7 @@ class AutoComplete extends Component {
         delete props.onUpdate;
         delete props.options;
         delete props.allowUserValues;
+        delete props.showListOnFocus;
         delete props.key;
 
         // defaultValue is handled in componentDidMount
@@ -233,10 +241,12 @@ AutoComplete.propTypes = {
     })).isRequired,
     onUpdate: PropTypes.func.isRequired,
     allowUserValues: PropTypes.bool,
+    showListOnFocus: PropTypes.bool,
 };
 
 AutoComplete.defaultProps = {
     allowUserValues: true,
+    showListOnFocus: true,
 };
 
 export default AutoComplete;

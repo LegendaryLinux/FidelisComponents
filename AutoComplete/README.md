@@ -16,6 +16,11 @@ An optional prop which specifies if user-provided values will be accepted. If fa
 the component will require that a value from the options array be selected. Defaults
 to true.
 
+**showListOnFocus** (boolean)
+An optional prop which determines if the autocomplete list will be shown when the
+input box is focused. If false, the autocomplete box will open when a user begins
+typing into the input field. Defaults to true.
+
 Usage
 ---
 ```jsx harmony
@@ -39,5 +44,6 @@ const onUpdate = (value) => { this.setState({ value }) };
     options={options}
     onUpdate={onUpdate}
     allowUserValues={false}
+    showListOnFocus={false}
 />
 ```
