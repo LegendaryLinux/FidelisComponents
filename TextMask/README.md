@@ -11,8 +11,8 @@ npm i --save @fidelisppm/text-mask
 Then, require it and use it.
 
 ```js
-import React from 'dist/reactTextMask'
-import TextMask from 'react-text-mask'
+import React from 'react';
+import TextMask from '@fidelisppm/text-mask';
 
 export default () => (
     <div>
