@@ -9,10 +9,6 @@ module.exports = {
 			{
 				test: /\.(js|jsx|es6)$/,
 				loader: 'babel-loader',
-				query: {
-					compact: true,
-					minified: true,
-				}
 			},
 			{
 				test: /\.css$/,

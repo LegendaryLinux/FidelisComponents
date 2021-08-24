@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/fidelis-styles",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "A set of styles used with components written for Fidelis PPM",
   "main": "src/js/styles.js",
   "scripts": {
@@ -13,8 +13,8 @@
   },
   "author": "Chris Wilson <chris@legendserver.info>",
   "dependencies": {
-    "lodash-es": "^4.17.20",
+    "lodash-es": "^4.17.21",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1"
+    "react": "^17.0.2"
   }
 }

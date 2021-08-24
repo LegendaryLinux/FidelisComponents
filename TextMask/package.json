@@ -1,0 +1,28 @@
+{
+  "name": "@fidelisppm/text-mask",
+  "version": "1.0.0",
+  "description": "Conforms string to given mask or pattern, and can be hooked up to input element",
+  "main": "src/index.js",
+  "author": "M.K. Safi <msafi@msafi.com>",
+  "license": "SEE LICENSE IN GIT REPO",
+  "scripts": {
+    "build": "webpack --mode production --config webpack.config.js",
+    "dev": "webpack --watch --mode development --config webpack.config.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "path": "^0.12.7",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  }
+}

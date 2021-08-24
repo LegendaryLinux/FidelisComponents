@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _forEach from 'lodash-es/forEach';
-import MaskedInput from 'react-text-mask';
+import MaskedInput from '@fidelisppm/text-mask';
 import '../styles/LimitedInput.scss';
 
 export default class LimitedInput extends Component {
