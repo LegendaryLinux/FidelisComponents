@@ -64,19 +64,20 @@ class FancySelect extends Component {
 	};
 
 	toggleOptionsVisible = () => {
-		this.setState((prevState) => ({
-			optionsVisible: !prevState.optionsVisible,
-		}),() => {
-			// If the options are visible, set their height appropriately
+		const optionsVisible = this.state.optionsVisible;
+		this.setState({ optionsVisible: !optionsVisible }, () => {
+			// If the options are no longer visible, remove the global event handler
 			if (!this.state.optionsVisible) {
 				document.removeEventListener('click', this.closeOnOutsideClick);
 				return;
 			}
+
+			// If the options are visible, set their height appropriately
 			const selectHeight = this.selectRef.current.offsetTop;
 			this.optionsRef.current.top = selectHeight+55+'px';
 
 			// Add an event listener to the DOM which will close the options list if the user clicks outside the list
-			document.addEventListener('click', this.closeOnOutsideClick)
+			document.addEventListener('click', this.closeOnOutsideClick);
 		});
 	};
 
@@ -107,13 +108,13 @@ class FancySelect extends Component {
 			<div className="fidelis-fancy-select-container" style={{width: `${this.props.width}px`}}>
 				<div className="fidelis-fancy-select-wrapper" ref={this.selectRef} style={{width: `${this.props.width}px`}}>
 					<div
-						className={`fidelis-fancy-select ${this.state.optionsVisible ? 'active' : null}`}
+						className={`fidelis-fancy-select ${this.state.optionsVisible ? 'active' : ''}`}
 						onClick={this.toggleOptionsVisible}
 						style={{width: `${this.props.width - 30}px`}}
 					>{this.state.options[this.state.selected].name}
 					</div>
 					<div
-						className={`fidelis-fancy-select-icon ${this.state.optionsVisible ? 'active' : null}`}
+						className={`fidelis-fancy-select-icon ${this.state.optionsVisible ? 'active' : ''}`}
 						onClick={this.toggleOptionsVisible}
 					>
 						<FontAwesomeIcon icon={faCaretUp} />

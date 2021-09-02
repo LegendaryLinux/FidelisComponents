@@ -16,7 +16,8 @@
   "license": "SEE LICENSE IN GIT REPO",
   "scripts": {
     "build": "webpack --mode production --config webpack.config.js",
-    "dev": "webpack --watch --mode development --config webpack.config.dev.js"
+    "dev": "webpack --watch --mode development --config webpack.config.dev.js",
+    "host": "http-server public"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
