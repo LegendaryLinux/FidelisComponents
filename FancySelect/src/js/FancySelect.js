@@ -63,7 +63,7 @@ class FancySelect extends Component {
 		this.toggleOptionsVisible();
 	};
 
-	toggleOptionsVisible = () => {
+	toggleOptionsVisible = (e) => {
 		const optionsVisible = this.state.optionsVisible;
 		this.setState({ optionsVisible: !optionsVisible }, () => {
 			// If the options are no longer visible, remove the global event handler
@@ -77,6 +77,7 @@ class FancySelect extends Component {
 			this.optionsRef.current.top = selectHeight+55+'px';
 
 			// Add an event listener to the DOM which will close the options list if the user clicks outside the list
+			if (e) { e.stopPropagation(); }
 			document.addEventListener('click', this.closeOnOutsideClick);
 		});
 	};
