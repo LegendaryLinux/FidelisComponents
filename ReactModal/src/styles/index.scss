@@ -1,0 +1,19 @@
+body{
+  background-color: #d3d3d3;
+}
+
+#test-modal{
+  border: 1px solid black;
+  padding: 1rem;
+  background-color: lightgreen;
+
+  table{
+    td{
+      padding-bottom: 0.25rem;
+
+      label{
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

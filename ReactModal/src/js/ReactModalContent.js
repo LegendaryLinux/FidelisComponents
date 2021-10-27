@@ -4,7 +4,7 @@ import '../styles/ReactModal.scss';
 
 class ReactModalContent extends Component {
 	detectCloseClick = (event) => {
-		if (event.target.className.search('react-modal-close') > -1) { this.props.closeModal(); }
+		if (event.target.classList.contains('react-modal-close')) { this.props.closeModal(); }
 		event.stopPropagation();
 	};
 

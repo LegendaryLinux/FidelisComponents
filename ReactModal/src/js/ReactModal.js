@@ -28,7 +28,7 @@ class ReactModal extends React.Component {
 			/>,
 			document.getElementById(this.containerId), () => {
 				// Allow the escape key to close the modal
-				document.body.addEventListener('keydown', this.closeModal);
+				document.body.addEventListener('keydown', this.closeModalOnEscape);
 
 				// Properly align the modal on the page
 				const visibleModal = document.getElementById(this.modalId);
@@ -37,16 +37,18 @@ class ReactModal extends React.Component {
 		);
 	};
 
-	closeModal = (event) => {
+	closeModalOnEscape = (event) => {
 		// Pressing the Escape key can close the modal
-		if (_isString(event.key) && event.key !== 'Escape') return;
+		if (event.key && event.key === 'Escape') { this.closeModal(); }
+	};
 
+	closeModal = () => {
 		// Remove the modal from the body entirely
 		document.body.removeChild(document.getElementById(this.containerId));
 
 		// Remove the event listener on the document body
-		document.body.removeEventListener('keydown', this.closeModal);
-	};
+		document.body.removeEventListener('keydown', this.closeModalOnEscape);
+	}
 
 	render() {
 		return (
