@@ -1,5 +1,6 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
+import { createPopper } from '@popperjs/core';
 import '../styles/Popover.scss';
 
 /**
@@ -8,82 +9,70 @@ import '../styles/Popover.scss';
  *
  * Props content Anything passed in on this prop will be rendered in a contentId Div
  */
-class Popover extends React.Component {
+class Popover extends Component {
 	constructor(props) {
 		super(props);
-
+		this.triggerRef = React.createRef();
+		this.contentRef = React.createRef();
+		this.popperInstance = null;
 		this.state = {
-			visible: false,
-			lastAction: 0,
+			popoverVisible: false,
 		};
-		this.contentId = `popover-${Math.floor(Math.random() * (10000 - 1))}${1}`;
 	}
 
 	componentDidMount() {
-		const content = document.getElementById(this.contentId);
-		const contentHeight = content.offsetHeight;
-		const contentWidth = content.offsetWidth;
+		const trigger = this.triggerRef.current;
+		const content = this.contentRef.current;
+		this.popperInstance = createPopper(trigger, content, {
+			modifiers: [
+				{
+					name: 'offset',
+					options: {
+						offset: [0, 8],
+					},
+				}
+			],
+		});
 
-		switch (this.props.position) {
-			case 'top':
-				content.style.bottom = `calc(100% - ${contentHeight / 4}px)`;
-				content.style.left = `${contentWidth / 2}px`;
-				break;
-			case 'bottom':
-				content.style.top = `calc(100% - ${contentHeight / 4}px)`;
-				content.style.left = `${contentWidth / 2}px`;
-				break;
-			case 'right':
-				content.style.top = `calc(50% - ${contentHeight / 2}px)`;
-				break;
-			default: // left
-				content.style.top = `calc(50% - ${contentHeight / 2}px)`;
-				break;
-		}
+		trigger.addEventListener('click', (evt) => {
+			this.state.popoverVisible ? this.hidePopover() : this.showPopover();
+
+			// Prevent event from bubbling to document body, thus preventing the popover from closing immediately
+			// after it opens, which to the user looks like the popover never opened
+			evt.stopPropagation();
+		});
+
+		// Prevent click events from bubbling up to the document body. This prevents the popover from closing if
+		// the user clicks within its boundaries
+		content.addEventListener('click', (evt) => evt.stopPropagation());
 	}
 
-	getContentClass() {
-		const visibility = (this.state.visible ? ' popover-visible' : ' popover-hidden');
-		const position = `popover-${this.props.position}`;
-		return `popover-content ${position} ${visibility}`;
+	// Show popover, update position
+	showPopover = () => {
+		this.setState({ popoverVisible: true }, () => {
+			window.addEventListener('click', this.hidePopover);
+			this.contentRef.current.setAttribute('data-show', '');
+			this.popperInstance.update();
+		});
+	};
+
+	// Hide popover
+	hidePopover = () => {
+		this.setState({ popoverVisible: false }, () => {
+			window.removeEventListener('click', this.hidePopover);
+			this.contentRef.current.removeAttribute('data-show');
+		});
 	}
-
-	openPopover = () => {
-		// I hate myself for this race condition. If anyone comes along later and figures out a way to prevent
-		// parent DOM elements firing events before their children, and can do it without event.stopPropagation(),
-		// please submit a pull request then email me and share your knowledge
-		if (Date.now() < (this.state.lastAction + 100)) { return; }
-		document.body.addEventListener('click', this.closePopover);
-		document.body.addEventListener('keydown', this.handleKeyDown);
-		this.setState({ visible: true, lastAction: Date.now() });
-	};
-
-	closePopover = () => {
-		if (Date.now() < (this.state.lastAction + 100)) { return; }
-		document.body.removeEventListener('click', this.closePopover);
-		document.body.removeEventListener('keydown', this.handleKeyDown);
-		this.setState({ visible: false, lastAction: Date.now() });
-	};
-
-	togglePopover = (event) => {
-		this.state.visible ? this.closePopover(event) : this.openPopover(event);
-	};
-
-	handleKeyDown = (event) => {
-		// If the user pressed the escape key, close the popover
-		if (event.keyCode === 27) {
-			this.closePopover();
-		}
-	};
 
 	render() {
 		return (
-			<div className="popover-container" onClick={this.togglePopover} onKeyDown={this.handleKeyDown}>
-				{this.props.trigger}
-				<div id={this.contentId} className={this.getContentClass()} onClick={this.closePopover}>
+			<>
+				<div ref={this.triggerRef}>{this.props.trigger}</div>
+				<div ref={this.contentRef} className="popover-content" data-popper-placement={this.props.position}>
 					{this.props.content}
+					<div className="popover-arrow" data-popper-arrow="" />
 				</div>
-			</div>
+			</>
 		);
 	}
 }
@@ -95,7 +84,7 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
-	position: 'left',
+	position: 'top',
 };
 
 export default Popover;
