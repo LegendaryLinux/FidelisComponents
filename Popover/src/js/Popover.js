@@ -28,7 +28,7 @@ class Popover extends Component {
         {
           name: 'offset',
           options: {
-            offset: [0, 8],
+            offset: [this.props.skidding, this.props.distance],
           },
         }
       ],
@@ -66,13 +66,13 @@ class Popover extends Component {
 
   render() {
     return (
-      <>
+      <div className="popover-wrapper">
         <div ref={this.triggerRef} className="popover-trigger">{this.props.trigger}</div>
         <div ref={this.contentRef} className="popover-content" data-popper-placement={this.props.position}>
           {this.props.content}
-          <div className="popover-arrow" data-popper-arrow />
+          <div className="popover-arrow" data-popper-arrow="" />
         </div>
-      </>
+      </div>
     );
   }
 }
@@ -81,10 +81,14 @@ Popover.propTypes = {
   trigger: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
   position: PropTypes.string,
+  skidding: PropTypes.number,
+  distance: PropTypes.number,
 };
 
 Popover.defaultProps = {
-  position: 'left',
+  position: 'top',
+  skidding: 0,
+  distance: 8,
 };
 
 export default Popover;
