@@ -67,10 +67,10 @@ class Popover extends Component {
 	render() {
 		return (
 			<>
-				<div ref={this.triggerRef}>{this.props.trigger}</div>
+				<div ref={this.triggerRef} className="popover-trigger">{this.props.trigger}</div>
 				<div ref={this.contentRef} className="popover-content" data-popper-placement={this.props.position}>
 					{this.props.content}
-					<div className="popover-arrow" data-popper-arrow="" />
+					<div className="popover-arrow" data-popper-arrow />
 				</div>
 			</>
 		);
@@ -84,7 +84,7 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
-	position: 'top',
+	position: 'left',
 };
 
 export default Popover;

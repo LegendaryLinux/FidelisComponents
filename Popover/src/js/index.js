@@ -7,17 +7,26 @@ const itemStyle = {
 	padding: '0.5em',
 };
 
+const wrapperStyle = {
+	display: 'flex',
+	flexDirection: 'row',
+	justifyContent: 'space-evenly',
+};
+const triggerStyle = { padding: '8px', backgroundColor: 'grey' };
+
 const Example = () => (
-	<Popover
-		content={(
-			<div style={{ width: '10em', border: '1px solid black' }}>
-				<div style={itemStyle}>Item 1</div>
-				<div style={itemStyle}>Item 2</div>
-				<div style={itemStyle}>Item 3</div>
-			</div>
-		)}
-		trigger={<span>Click me!</span>}
-	/>
+	<div style={wrapperStyle}>
+		<Popover
+			content={(
+				<div style={{ width: '10em', border: '1px solid black' }}>
+					<div style={itemStyle}>Item 1</div>
+					<div style={itemStyle}>Item 2</div>
+					<div style={itemStyle}>Item 3</div>
+				</div>
+			)}
+			trigger={<div style={triggerStyle}>Click me!</div>}
+		/>
+	</div>
 );
 
 window.onload = function(){

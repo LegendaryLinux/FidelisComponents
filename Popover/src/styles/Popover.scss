@@ -1,13 +1,21 @@
+.popover-trigger{
+  margin: 0;
+  padding: 0;
+}
+
 .popover-arrow{
+  position: absolute;
+  width: 0;
+  height: 0;
   visibility: hidden;
 
-  ::before{
+  &::before{
     position: absolute;
-    width: 8px;
-    height: 8px;
     visibility: visible;
     content: '';
-    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
   }
 }
 
@@ -19,17 +27,37 @@
 
   &[data-popper-placement^='top'] > .popover-arrow {
     bottom: -4px;
+
+    &::before{
+      border-top: 8px solid black;
+      left: -8px;
+      bottom: -12px;
+    }
   }
 
   &[data-popper-placement^='bottom'] > .popover-arrow {
-    bottom: -4px;
+    top: -4px;
+
+    &::before{
+      border-bottom: 8px solid black;
+      left: -8px;
+      top: -12px;
+    }
   }
 
   &[data-popper-placement^='left'] > .popover-arrow {
-    bottom: -4px;
+    right: 4px;
+
+    &::before{
+      border-left: 8px solid black;
+    }
   }
 
   &[data-popper-placement^='right'] > .popover-arrow {
-    bottom: -4px;
+    left: -4px;
+
+    &::before{
+      border-right: 8px solid black;
+    }
   }
 }
