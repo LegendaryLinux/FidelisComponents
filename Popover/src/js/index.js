@@ -98,7 +98,8 @@ const Example = () => (
             <div style={itemStyle}>Who would even do this in a popover!?</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>Unmodified in the upper-left corner.</div>}
+        trigger={<div style={triggerStyle}>Upper-left corner with a hidden arrow.</div>}
+        hideArrow={true}
       />
     </div>
     <div style={{position: 'absolute', top: 0, right: 0}}>

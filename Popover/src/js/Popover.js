@@ -70,7 +70,11 @@ class Popover extends Component {
         <div ref={this.triggerRef} className="popover-trigger">{this.props.trigger}</div>
         <div ref={this.contentRef} className="popover-content" data-popper-placement={this.props.position}>
           {this.props.content}
-          <div className="popover-arrow" data-popper-arrow="" />
+          {
+            (this.props.hideArrow || (this.props.distance < 8)) ?
+              null :
+              <div className="popover-arrow" data-popper-arrow="" />
+          }
         </div>
       </div>
     );
@@ -81,12 +85,14 @@ Popover.propTypes = {
   trigger: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
   position: PropTypes.string,
+  hideArrow: PropTypes.bool,
   skidding: PropTypes.number,
   distance: PropTypes.number,
 };
 
 Popover.defaultProps = {
   position: 'top',
+  hideArrow: false,
   skidding: 0,
   distance: 8,
 };
