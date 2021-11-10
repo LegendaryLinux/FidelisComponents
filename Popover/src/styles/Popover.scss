@@ -55,6 +55,8 @@
 
     &::before{
       border-left: 8px solid black;
+      left: 4px;
+      top: -8px;
     }
   }
 
@@ -63,6 +65,8 @@
 
     &::before{
       border-right: 8px solid black;
+      right: -4px;
+      top: -8px;
     }
   }
 }

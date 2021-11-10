@@ -62,7 +62,8 @@ const Example = () => (
             <div style={itemStyle}>Item 3</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>I have a normal Popover.</div>}
+        trigger={<div style={triggerStyle}>I have a normal Popover on top.</div>}
+        placement="top"
       />
     </div>
     <div style={innerWrapperStyle}>

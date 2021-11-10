@@ -24,6 +24,7 @@ class Popover extends Component {
     const trigger = this.triggerRef.current;
     const content = this.contentRef.current;
     this.popperInstance = createPopper(trigger, content, {
+      placement: this.props.placement,
       modifiers: [
         {
           name: 'offset',
@@ -68,7 +69,7 @@ class Popover extends Component {
     return (
       <div className="popover-wrapper">
         <div ref={this.triggerRef} className="popover-trigger">{this.props.trigger}</div>
-        <div ref={this.contentRef} className="popover-content" data-popper-placement={this.props.position}>
+        <div ref={this.contentRef} className="popover-content">
           {this.props.content}
           {
             (this.props.hideArrow || (this.props.distance < 8)) ?
@@ -84,14 +85,14 @@ class Popover extends Component {
 Popover.propTypes = {
   trigger: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
-  position: PropTypes.string,
+  placement: PropTypes.string,
   hideArrow: PropTypes.bool,
   skidding: PropTypes.number,
   distance: PropTypes.number,
 };
 
 Popover.defaultProps = {
-  position: 'top',
+  placement: 'bottom',
   hideArrow: false,
   skidding: 0,
   distance: 8,

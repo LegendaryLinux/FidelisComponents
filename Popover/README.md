@@ -9,7 +9,7 @@ Required. A DOM element which will display the popover when clicked.
 **content** (object):  
 Required. A DOM element which will be rendered inside the popover.
 
-**position** (string):  
+**placement** (string):  
 Optional. The position relative to the trigger where the popover will be
 displayed. Acceptable values are `top`, `bottom`, `left`, and `right`.  
 Defaults to `bottom`.
