@@ -13,6 +13,7 @@ class Popover extends Component {
   constructor(props) {
     super(props);
     this.triggerRef = React.createRef();
+    this.triggerClass = `popover-${Math.random() * 1000000000}`;
     this.contentRef = React.createRef();
     this.popperInstance = null;
     this.state = {
@@ -36,11 +37,7 @@ class Popover extends Component {
     });
 
     trigger.addEventListener('click', (evt) => {
-      this.state.popoverVisible ? this.hidePopover() : this.showPopover();
-
-      // Prevent event from bubbling to document body, thus preventing the popover from closing immediately
-      // after it opens, which to the user looks like the popover never opened
-      evt.stopPropagation();
+      this.state.popoverVisible ? this.hidePopover() : this.showPopover(evt);
     });
 
     // Prevent click events from bubbling up to the document body. This prevents the popover from closing if
@@ -49,11 +46,14 @@ class Popover extends Component {
   }
 
   // Show popover, update position
-  showPopover = () => {
+  showPopover = (evt) => {
     this.setState({ popoverVisible: true }, () => {
-      window.addEventListener('click', this.hidePopover);
       this.contentRef.current.setAttribute('data-show', '');
-      this.popperInstance.update();
+      this.popperInstance.update().then(() => {
+        // Wait 50 milliseconds before adding the close listener. This allows the original event to finish propagating,
+        // and prevents the popover from closing immediately after it opens
+        setTimeout(() => window.addEventListener('click', this.hidePopover), 50);
+      });
     });
   };
 
