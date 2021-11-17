@@ -30,7 +30,7 @@ class ActionLink extends Component {
 					</div>
 				)}
 				content={this.makeContent()}
-				position={this.props.popoverPosition}
+				placement={this.props.popoverPosition}
 			/>
 		);
 	}
