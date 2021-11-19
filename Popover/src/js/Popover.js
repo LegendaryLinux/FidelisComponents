@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createPopper } from '@popperjs/core';
-import '../styles/Popover.scss';
+import { Popover as TinyPopover, ArrowContainer } from 'react-tiny-popover';
 
 /**
  * Provides a render container for popups. The popups should be styled
@@ -12,71 +11,34 @@ import '../styles/Popover.scss';
 class Popover extends Component {
   constructor(props) {
     super(props);
-    this.triggerRef = React.createRef();
-    this.triggerClass = `popover-${Math.random() * 1000000000}`;
-    this.contentRef = React.createRef();
-    this.popperInstance = null;
     this.state = {
       popoverVisible: false,
     };
   }
 
-  componentDidMount() {
-    const trigger = this.triggerRef.current;
-    const content = this.contentRef.current;
-    this.popperInstance = createPopper(trigger, content, {
-      placement: this.props.placement,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [this.props.skidding, this.props.distance],
-          },
-        }
-      ],
-    });
-
-    trigger.addEventListener('click', (evt) => {
-      this.state.popoverVisible ? this.hidePopover() : this.showPopover(evt);
-    });
-
-    // Prevent click events from bubbling up to the document body. This prevents the popover from closing if
-    // the user clicks within its boundaries
-    content.addEventListener('click', (evt) => evt.stopPropagation());
-  }
-
-  // Show popover, update position
-  showPopover = (evt) => {
-    this.setState({ popoverVisible: true }, () => {
-      this.contentRef.current.setAttribute('data-show', '');
-      this.popperInstance.update().then(() => {
-        // Wait 50 milliseconds before adding the close listener. This allows the original event to finish propagating,
-        // and prevents the popover from closing immediately after it opens
-        setTimeout(() => window.addEventListener('click', this.hidePopover), 50);
-      });
-    });
-  };
-
-  // Hide popover
-  hidePopover = () => {
-    this.setState({ popoverVisible: false }, () => {
-      window.removeEventListener('click', this.hidePopover);
-      this.contentRef.current.removeAttribute('data-show');
-    });
-  }
+  togglePopover = () => this.setState({ popoverVisible: !this.state.popoverVisible });
 
   render() {
     return (
-      <div className="popover-wrapper">
-        <div ref={this.triggerRef} className="popover-trigger">{this.props.trigger}</div>
-        <div ref={this.contentRef} className="popover-content">
-          {this.props.content}
-          {
-            (this.props.hideArrow || (this.props.distance < 8)) ?
-              null :
-              <div className="popover-arrow" data-popper-arrow="" />
-          }
-        </div>
+      <div onClick={this.togglePopover}>
+        <TinyPopover
+          isOpen={this.state.popoverVisible}
+          onClickOutside={this.togglePopover}
+          reposition={true}
+          padding={0}
+          positions={[this.props.position, 'top', 'bottom', 'left', 'right']}
+          content={({position, childRect, popoverRect}) => this.props.hideArrow ? this.props.content : (
+            <ArrowContainer
+              position={position}
+              childRect={childRect}
+              popoverRect={popoverRect}
+              arrowColor={this.props.arrowColor}
+              arrowSize={this.props.arrowSize}
+            >{this.props.content}
+            </ArrowContainer>
+          )}
+        >{this.props.trigger}
+        </TinyPopover>
       </div>
     );
   }
@@ -85,17 +47,17 @@ class Popover extends Component {
 Popover.propTypes = {
   trigger: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
-  placement: PropTypes.string,
+  position: PropTypes.string,
   hideArrow: PropTypes.bool,
-  skidding: PropTypes.number,
-  distance: PropTypes.number,
+  arrowColor: PropTypes.string,
+  arrowSize: PropTypes.number,
 };
 
 Popover.defaultProps = {
-  placement: 'bottom',
+  position: 'top',
   hideArrow: false,
-  skidding: 0,
-  distance: 8,
+  arrowColor: '#000000',
+  arrowSize: 6,
 };
 
 export default Popover;

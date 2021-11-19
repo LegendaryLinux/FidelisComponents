@@ -9,7 +9,7 @@ Required. A DOM element which will display the popover when clicked.
 **content** (object):  
 Required. A DOM element which will be rendered inside the popover.
 
-**placement** (string):  
+**position** (string):  
 Optional. The position relative to the trigger where the popover will be
 displayed. Acceptable values are `top`, `bottom`, `left`, and `right`.  
 Defaults to `bottom`.
@@ -18,15 +18,13 @@ Defaults to `bottom`.
 Optional. If true, the arrow will not be displayed.  
 Defaults to `false`.
 
-**distance** (int):  
-Optional. If positive, the distance to move the content of the popover away from the trigger.
-If negative, moves the content towards the trigger. If less than 8, will cause the arrow
-to disappear.
-Defaults to `8`.
+**arrowColor** (string):
+Optional. The color of the popover arrow.  
+Defaults to "#000000".
 
-**skidding** (int):  
-Optional. Distance to slide the popover and its arrow along the edge of the trigger.  
-Defaults to `0`.
+**arrowSize** (int):
+Optional. The size in pixels of the width of the popover arrow.  
+Defaults to 6.
 
 ## Usage
 
@@ -38,7 +36,7 @@ import { Popover } from '@fidelisppm/popover';
   content={<span>I am popover text!</span>}
   position="bottom"
   hideArrow={false}
-  distance={8}
-  skidding={0}
+  arrowColor="#000000"
+  arrowSize={6}
 />
 ```

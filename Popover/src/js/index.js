@@ -57,8 +57,8 @@ const Example = () => (
       <Popover
         content={(
           <div style={{ width: '10em', border: '1px solid black' }}>
-            <div style={itemStyle}>Item 1</div>
-            <div style={itemStyle}>Item 2</div>
+            <div style={itemStyle} onClick={() => console.log('Hello!')}>Console log "Hello!"</div>
+            <div style={itemStyle} onClick={() => alert('Hello!')}>Alert "Hello!"</div>
             <div style={itemStyle}>Item 3</div>
           </div>
         )}
