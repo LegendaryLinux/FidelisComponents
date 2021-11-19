@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/action-link",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -24,7 +24,9 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
-    "prop-types": "latest",
+    "prop-types": "latest"
+  },
+  "peerDependencies": {
     "react": "^17.0.2"
   },
   "devDependencies": {
