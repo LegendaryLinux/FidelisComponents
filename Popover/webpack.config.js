@@ -27,6 +27,9 @@ module.exports = {
 			},
 		]
 	},
+	externals: {
+		react: 'commonjs react',
+	},
 	output: {
 		path: path.resolve(__dirname),
 		filename: "[name].js",

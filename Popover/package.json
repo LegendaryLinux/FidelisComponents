@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/popover",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -20,8 +20,10 @@
   },
   "dependencies": {
     "prop-types": "latest",
-    "react": "^17.0.2",
     "react-tiny-popover": "^7.0.1"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
