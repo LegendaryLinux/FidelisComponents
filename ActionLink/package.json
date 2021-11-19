@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/action-link",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -19,7 +19,7 @@
     "dev": "webpack --watch --mode development"
   },
   "dependencies": {
-    "@fidelisppm/popover": "^2.0.0",
+    "@fidelisppm/popover": "^3.0.0",
     "@fidelisppm/utils": "^1.0.12",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
