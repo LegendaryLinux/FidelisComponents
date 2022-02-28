@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Popover as TinyPopover, ArrowContainer } from 'react-tiny-popover';
+import '../styles/Popover.css';
 
 /**
  * Provides a render container for popups. The popups should be styled
