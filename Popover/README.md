@@ -12,19 +12,23 @@ Required. A DOM element which will be rendered inside the popover.
 **position** (string):  
 Optional. The position relative to the trigger where the popover will be
 displayed. Acceptable values are `top`, `bottom`, `left`, and `right`.  
-Defaults to `bottom`.
+Defaults to `top`.
 
 **hideArrow** (bool):  
 Optional. If true, the arrow will not be displayed.  
 Defaults to `false`.
 
-**arrowColor** (string):
+**arrowColor** (string):  
 Optional. The color of the popover arrow.  
 Defaults to "#000000".
 
-**arrowSize** (int):
+**arrowSize** (int):  
 Optional. The size in pixels of the width of the popover arrow.  
 Defaults to 6.
+
+**distance** (int):  
+Optional. The distance in pixels the popover will be rendered away from the trigger.  
+Defaults to 0.
 
 ## Usage
 
@@ -34,9 +38,10 @@ import { Popover } from '@fidelisppm/popover';
 <Popover
   trigger={document.getElementById('example-element')}
   content={<span>I am popover text!</span>}
-  position="bottom"
+  position="top"
   hideArrow={false}
   arrowColor="#000000"
   arrowSize={6}
+  distance={0}
 />
 ```

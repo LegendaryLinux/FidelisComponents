@@ -49,8 +49,7 @@ const Example = () => (
             <div style={itemStyle}>Item 3</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>I have 30 pixels of positive skidding.</div>}
-        skidding={30}
+        trigger={<div style={triggerStyle}>Hi, mom!</div>}
       />
     </div>
     <div style={innerWrapperStyle}>
@@ -62,8 +61,8 @@ const Example = () => (
             <div style={itemStyle}>Item 3</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>I have a normal Popover on top.</div>}
-        placement="top"
+        trigger={<div style={triggerStyle}>I have a normal Popover on bottom.</div>}
+        position="bottom"
       />
     </div>
     <div style={innerWrapperStyle}>
@@ -86,8 +85,7 @@ const Example = () => (
             <div style={itemStyle}>Item 3</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>I have 30 pixels of negative skidding.</div>}
-        skidding={-30}
+        trigger={<div style={triggerStyle}>Don't forget your towel!</div>}
       />
     </div>
     <div style={{position: 'absolute', top: 0, left: 0}}>
@@ -112,8 +110,7 @@ const Example = () => (
             <div style={itemStyle}>Who would even do this in a popover!?</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>Skidding in a corner.</div>}
-        skidding={-50}
+        trigger={<div style={triggerStyle}>I'm in a corner!</div>}
       />
     </div>
     <div style={{position: 'absolute', bottom: 0, left: 0}}>
@@ -125,8 +122,7 @@ const Example = () => (
             <div style={itemStyle}>Who would even do this in a popover!?</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>Unmodified in the lower-left a corner.</div>}
-        skidding={-50}
+        trigger={<div style={triggerStyle}>Unmodified in the lower-left corner.</div>}
       />
     </div>
     <div style={{position: 'absolute', bottom: 0, right: 0}}>
@@ -138,8 +134,7 @@ const Example = () => (
             <div style={itemStyle}>Who would even do this in a popover!?</div>
           </div>
         )}
-        trigger={<div style={triggerStyle}>Too much skidding.</div>}
-        skidding={-200}
+        trigger={<div style={triggerStyle}>Hi there, friend!</div>}
       />
     </div>
   </div>

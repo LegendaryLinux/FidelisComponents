@@ -25,7 +25,7 @@ class Popover extends Component {
           isOpen={this.state.popoverVisible}
           onClickOutside={this.togglePopover}
           reposition={true}
-          padding={0}
+          padding={this.props.distance}
           positions={[this.props.position, 'top', 'bottom', 'left', 'right']}
           content={({position, childRect, popoverRect}) => this.props.hideArrow ? this.props.content : (
             <ArrowContainer
@@ -51,6 +51,8 @@ Popover.propTypes = {
   hideArrow: PropTypes.bool,
   arrowColor: PropTypes.string,
   arrowSize: PropTypes.number,
+  skidding: PropTypes.number,
+  distance: PropTypes.number,
 };
 
 Popover.defaultProps = {
@@ -58,6 +60,8 @@ Popover.defaultProps = {
   hideArrow: false,
   arrowColor: '#000000',
   arrowSize: 6,
+  skidding: 0,
+  distance: 0,
 };
 
 export default Popover;
