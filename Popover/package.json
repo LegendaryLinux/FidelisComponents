@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/popover",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -20,26 +20,25 @@
   },
   "dependencies": {
     "prop-types": "latest",
-    "react-tiny-popover": "^7.0.1"
-  },
-  "peerDependencies": {
-    "react": ">=17.0.2"
+    "react": "^18.2.0",
+    "react-tiny-popover": "^7.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
     "babel": "^6.23.0",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^9.1.2",
     "babel-preset-env": "^1.7.0",
-    "css-loader": "^6.6.0",
-    "node-sass": "^7.0.1",
+    "css-loader": "^6.7.3",
+    "http-server": "^14.1.1",
+    "node-sass": "^8.0.0",
     "path": "^0.12.7",
-    "react-dom": "^17.0.2",
-    "sass-loader": "^12.6.0",
+    "react-dom": "^18.2.0",
+    "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
-    "webpack": "^5.69.1",
-    "webpack-cli": "^4.9.2"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
