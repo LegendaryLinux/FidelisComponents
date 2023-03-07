@@ -1,0 +1,98 @@
+.load-more-table-container{
+  /* Tables, rows, and columns */
+  $table-header-background: #f0f0ee;
+  $table-row-background: #ffffff;
+  $table-row-highlight: #f8f9f9;
+  $table-border-color: #d3d3d3;
+
+  @import '~@fidelisppm/fidelis-styles/mixins';
+  @import '~@fidelisppm/fidelis-styles/buttons';
+  font-family: 'PT Sans', 'sans-serif';
+
+  @include border-radius(4px);
+  @include box-shadow(1px,1px,1px,1px,#ececec);
+  background-color: #ffffff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+
+  table{
+    border: 1px solid #ececec;
+    @include border-radius(4px);
+    align-items: center;
+    vertical-align: center;
+
+    thead {
+      tr {
+        background-color: $table-header-background;
+      }
+    }
+
+    tbody {
+      tr {
+        background-color: $table-row-background;
+        border-top: 1px solid $table-border-color;
+      }
+      tr:hover {
+        background-color: $table-row-highlight;
+      }
+    }
+
+    td {
+      padding: 0.5em 1em;
+    }
+  }
+
+  .load-more-table-wrapper{
+    @include border-top-radius(4px);
+    padding: 0;
+
+    .load-more-table{
+      @include border-top-radius(4px);
+      width: 100%;
+      border: 1px solid #ececec;
+      align-items: center;
+      vertical-align: center;
+      border-spacing: 0;
+      border-bottom: none;
+
+      tbody{
+        overflow-y: auto;
+
+        tr {
+          background-color: $table-row-background;
+          border-top: 1px solid $table-border-color;
+        }
+        tr:hover {
+          background-color: $table-row-highlight;
+        }
+      }
+
+      thead tr{
+        height: 2em;
+        background-color: $table-header-background;
+      }
+
+      thead, tbody{
+        tr{
+          line-height: 1.5em;
+        }
+      }
+
+      th, td{
+        padding-left: 1em;
+        padding-right: 1em;
+        text-align: left;
+        border-bottom: 1px solid #ececec;
+      }
+
+      .is-sortable:hover{
+        cursor: pointer;
+      }
+
+      .is-centered{
+        text-align: center;
+      }
+    }
+  }
+}
