@@ -75,6 +75,14 @@ In the example above, the last object in the array will have a true
 value "Guinan" in its `last` property, but `<b>Guinan</b>` will be rendered
 instead.
 
+### loadingComponent (Component, optional)
+A component to show in place of the "Load More" button while data is loading. If
+not provided, defaults to a spinning FontAwesome icon.
+
+### buttonPosition (String, optional)
+Controls the alignment of the "Load More" button below the table. Accepts one
+of `left`, `middle`, or `right`. Defaults to `middle`.
+
 ### initialMarker (String, optional)
 If provided, the initial request will be made using the provided marker.
 

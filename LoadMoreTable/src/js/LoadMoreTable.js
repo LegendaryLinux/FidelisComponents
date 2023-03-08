@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretUp, faCaretDown, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import '../styles/LoadMoreTable.scss';
 
 class LoadMoreTable extends Component {
@@ -9,6 +9,8 @@ class LoadMoreTable extends Component {
         super(props);
 
         this.state = {
+            showLoading: false,
+
             dataRows: [],
             sortValue: this.props.initialSortKey,
             sortAscending: this.props.initialSortAsc,
@@ -21,11 +23,14 @@ class LoadMoreTable extends Component {
     }
 
     loadMoreData = (marker = null) => {
-        this.props.loadMoreData(marker).then((results) => {
-            this.setState({
-                dataRows: this.state.dataRows.concat(results.data),
-                marker: results.marker,
-            }, this.sortData);
+        this.setState({ showLoading: true }, () => {
+            this.props.loadMoreData(marker).then((results) => {
+                this.setState({
+                    showLoading: false,
+                    dataRows: this.state.dataRows.concat(results.data),
+                    marker: results.marker,
+                }, this.sortData);
+            });
         });
     };
 
@@ -129,14 +134,16 @@ class LoadMoreTable extends Component {
     render() {
         return (
             <div className="load-more-table-container">
-                <div className="load-more-table-wrapper">
-                    <table className="load-more-table">
-                        <thead>{this.makeHeader()}</thead>
-                        <tbody>{this.makeBody()}</tbody>
-                    </table>
-                </div>
-                <div className="load-more-table-button-row">
-                    <button onClick={this.loadMoreData}>Load More</button>
+                <table className="load-more-table">
+                    <thead>{this.makeHeader()}</thead>
+                    <tbody>{this.makeBody()}</tbody>
+                </table>
+                <div className={`load-more-table-button-row ${this.props.buttonPosition}`}>
+                    {
+                        this.state.showLoading ?
+                            this.props.loadingComponent :
+                            <button onClick={this.loadMoreData}>Load More</button>
+                    }
                 </div>
             </div>
         );
@@ -146,12 +153,16 @@ class LoadMoreTable extends Component {
 LoadMoreTable.propTypes = {
     headers: PropTypes.array.isRequired,
     loadMoreData: PropTypes.func.isRequired,
+    loadingComponent: PropTypes.object.isRequired,
+    buttonPosition: PropTypes.string.isRequired,
     initialMarker: PropTypes.string,
     initialSortKey: PropTypes.string,
     initialSortAsc: PropTypes.bool,
 };
 
 LoadMoreTable.defaultProps = {
+    loadingComponent: <FontAwesomeIcon icon={faSpinner} />,
+    buttonPosition: 'middle',
     initialMarker: null,
     initialSortKey: null,
     initialSortAsc: true,
