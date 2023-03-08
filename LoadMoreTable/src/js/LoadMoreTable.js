@@ -23,7 +23,7 @@ class LoadMoreTable extends Component {
     loadMoreData = (marker = null) => {
         this.props.loadMoreData(marker).then((results) => {
             this.setState({
-                dataRows: results.data,
+                dataRows: this.state.dataRows.concat(results.data),
                 marker: results.marker,
             }, this.sortData);
         });
@@ -145,16 +145,14 @@ class LoadMoreTable extends Component {
 
 LoadMoreTable.propTypes = {
     headers: PropTypes.array.isRequired,
-    loadMoreData: PropTypes.promise.isRequired,
-    initialMarker: PropTypes.string.isRequired,
-    entriesPerPage: PropTypes.number,
+    loadMoreData: PropTypes.func.isRequired,
+    initialMarker: PropTypes.string,
     initialSortKey: PropTypes.string,
     initialSortAsc: PropTypes.bool,
 };
 
 LoadMoreTable.defaultProps = {
     initialMarker: null,
-    entriesPerPage: 10,
     initialSortKey: null,
     initialSortAsc: true,
 };
