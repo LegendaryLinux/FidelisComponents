@@ -19,12 +19,12 @@ class LoadMoreTable extends Component {
     }
 
     componentDidMount() {
-        this.loadMoreData(this.state.marker);
+        this.loadMoreData();
     }
 
-    loadMoreData = (marker = null) => {
+    loadMoreData = () => {
         this.setState({ showLoading: true }, () => {
-            this.props.loadMoreData(marker).then((results) => {
+            this.props.loadMoreData(this.state.marker).then((results) => {
                 this.setState({
                     showLoading: false,
                     dataRows: this.state.dataRows.concat(results.data),
