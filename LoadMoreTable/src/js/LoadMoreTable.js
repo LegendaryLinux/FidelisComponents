@@ -141,8 +141,13 @@ class LoadMoreTable extends Component {
                 <div className={`load-more-table-button-row ${this.props.buttonPosition}`}>
                     {
                         this.state.showLoading ?
-                            this.props.loadingComponent :
-                            <button onClick={this.loadMoreData}>Load More</button>
+                            this.props.loadingComponent : (
+                                <button
+                                  disabled={this.state.marker === null}
+                                  onClick={this.loadMoreData}
+                                >Load More
+                                </button>
+                            )
                     }
                 </div>
             </div>
