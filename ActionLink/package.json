@@ -1,6 +1,6 @@
 {
   "name": "@fidelisppm/action-link",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
@@ -20,27 +20,27 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "@fidelisppm/popover": "^3.2.0",
-    "@fidelisppm/utils": "^1.2.0",
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fidelisppm/popover": "^3.2.1",
+    "@fidelisppm/utils": "^1.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "prop-types": "latest"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.24.4",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-react": "^7.24.1",
     "babel": "^6.23.0",
-    "babel-loader": "^9.1.2",
+    "babel-loader": "^9.1.3",
     "babel-preset-env": "^1.7.0",
-    "css-loader": "^6.7.3",
-    "node-sass": "^8.0.0",
+    "css-loader": "^6.11.0",
+    "node-sass": "^9.0.0",
     "path": "^0.12.7",
-    "sass-loader": "^13.2.0",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
