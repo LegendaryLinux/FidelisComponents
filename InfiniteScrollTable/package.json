@@ -1,0 +1,49 @@
+{
+  "name": "@fidelisppm/infinite-scroll-table",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegendaryLinux/FidelisComponents.git"
+  },
+  "main": "index.js",
+  "author": "Chris Wilson <chris@legendserver.info>",
+  "keywords": [
+    "table",
+    "tables",
+    "infinite-scroll",
+    "infinite",
+    "scroll"
+  ],
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "dev": "webpack --config webpack.config.dev.js --watch --mode development",
+    "host": "http-server public -p 8000"
+  },
+  "dependencies": {
+    "@fidelisppm/fidelis-styles": "^2.1.0",
+    "@fidelisppm/utils": "^1.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.1",
+    "prop-types": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "axios": "^1.6.8",
+    "babel": "^6.23.0",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^7.1.1",
+    "http-server": "^14.1.1",
+    "node-sass": "^9.0.0",
+    "path": "^0.12.7",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
