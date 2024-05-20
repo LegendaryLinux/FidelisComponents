@@ -42,7 +42,7 @@ class InfiniteScrollTable extends Component {
                     dataRows: this.state.dataRows.concat(results.data),
                     marker: results.marker,
                     initialFetchComplete: true,
-                    noFurtherData: (results.data.length === 0),
+                    noFurtherData: (!results?.marker || results.data.length === 0),
                 }, () => {
                     this.sortData();
                     this.reTargetObserver();
