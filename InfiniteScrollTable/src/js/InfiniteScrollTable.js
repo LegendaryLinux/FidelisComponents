@@ -172,9 +172,13 @@ class InfiniteScrollTable extends Component {
                               <thead>{this.makeHeader()}</thead>
                               <tbody ref={this.tBodyRef}>{this.makeBody()}</tbody>
                           </table>
-                          <div className="infinite-scroll-table-footer">
-                              {this.state.showLoading ? this.props.loadingComponent : null}
-                          </div>
+                          {
+                              this.state.showLoading ? (
+                                <div className="infinite-scroll-table-footer">
+                                    {this.props.loadingComponent}
+                                </div>
+                              ) : null
+                          }
                       </>
                     )
                 }
