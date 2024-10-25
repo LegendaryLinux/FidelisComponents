@@ -1,4 +1,4 @@
-@import 'mixins';
+@use 'mixins';
 
 /* Button Colors */
 $fidelis-btn-primary-bg:                    #ee9f3f;
@@ -71,19 +71,19 @@ $fidelis-btn-danger-text:                   #ffffff;
 };
 
 .fidelis-button {
-	@include pt-sans-font-face();
+	@include mixins.pt-sans-font-face();
 	@include fidelis-button-base();
 }
 
 .fidelis-button-primary {
-	@include pt-sans-font-face();
+	@include mixins.pt-sans-font-face();
 	@include fidelis-button-base();
 	@include fidelis-button-gen($fidelis-btn-primary-border, $fidelis-btn-primary-bg,
 					$fidelis-btn-primary-border, $fidelis-btn-primary-text);
 }
 
 .fidelis-button-secondary {
-	@include pt-sans-font-face();
+	@include mixins.pt-sans-font-face();
 	@include fidelis-button-base();
 	@include fidelis-button-gen($fidelis-btn-secondary-border, $fidelis-btn-secondary-bg,
 					$fidelis-btn-secondary-border, $fidelis-btn-secondary-text,
@@ -91,14 +91,14 @@ $fidelis-btn-danger-text:                   #ffffff;
 }
 
 .fidelis-button-danger {
-	@include pt-sans-font-face();
+	@include mixins.pt-sans-font-face();
 	@include fidelis-button-base();
 	@include fidelis-button-gen($fidelis-btn-danger-border, $fidelis-btn-danger-bg,
 					$fidelis-btn-danger-border, $fidelis-btn-danger-text);
 }
 
 .fidelis-button-default {
-	@include pt-sans-font-face();
+	@include mixins.pt-sans-font-face();
 	@include fidelis-button-base();
 	@include fidelis-button-gen();
 }
@@ -114,11 +114,11 @@ $fidelis-btn-danger-text:                   #ffffff;
 }
 
 .fidelis-btn-file-link {
+	@include mixins.border-radius(4px);
+	@include fidelis-button-gen(#808080, #009cd1, #009ed8, white);
 	height: 2em;
 	width: 50%;
 	text-align: left !important;
 	justify-content: left;
 	text-decoration: none;
-	@include border-radius(4px);
-	@include fidelis-button-gen(#808080, #009cd1, #009ed8, white);
 }
