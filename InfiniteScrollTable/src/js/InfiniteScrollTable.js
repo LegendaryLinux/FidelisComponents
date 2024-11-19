@@ -109,7 +109,7 @@ class InfiniteScrollTable extends Component {
 
                 // Attempt to auto-format phone numbers
                 if (column.key.toLowerCase().search('phone') > -1 && printVal.match(/^\d{10}$/) !== null) {
-                    printVal = `(${printVal.substring(0, 4)}) ${printVal.substring(3, 6)}-${printVal.substring(6)}`;
+                    printVal = `(${printVal.substring(0, 3)}) ${printVal.substring(3, 6)}-${printVal.substring(6)}`;
                 }
 
                 // Add the column to the row
