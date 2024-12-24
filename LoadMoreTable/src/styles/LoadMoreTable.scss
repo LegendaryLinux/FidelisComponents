@@ -1,3 +1,5 @@
+@use '~@fidelisppm/fidelis-styles/mixins';
+
 .load-more-table-container{
   /* Tables, rows, and columns */
   $table-header-background: #f0f0ee;
@@ -5,16 +7,14 @@
   $table-row-highlight: #f8f9f9;
   $table-border-color: #d3d3d3;
 
-  @import '~@fidelisppm/fidelis-styles/mixins';
-  @import '~@fidelisppm/fidelis-styles/buttons';
   font-family: 'PT Sans', 'sans-serif';
   background-color: #ffffff;
   padding-top: 1rem;
   padding-bottom: 1rem;
   width: 100%;
 
-  .load-more-table{
-    @include border-top-radius(4px);
+  .load-more-table {
+    @include mixins.border-top-radius(4px);
     width: 100%;
     border: 1px solid #ececec;
     align-items: center;

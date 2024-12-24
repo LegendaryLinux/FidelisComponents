@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import LimitedInput, { NumberInput, PhoneInput, ZipInput } from "./LimitedInput";
 import '../styles/index.scss';
 
@@ -64,5 +64,6 @@ class App extends Component {
 }
 
 window.onload = () => {
-	ReactDOM.render(<App />, document.getElementById('app'));
+	const root = createRoot(document.getElementById('app'));
+	root.render(<App />);
 };

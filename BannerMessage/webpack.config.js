@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		index: './src/js/BannerMessage.js'
+		index: './src/BannerMessage.js'
 	},
 	module: {
 		rules: [

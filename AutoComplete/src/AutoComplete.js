@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _forEach from 'lodash-es/forEach';
 import _cloneDeep from 'lodash-es/cloneDeep';
-import '../styles/AutoComplete.scss';
+import './AutoComplete.scss';
 
 class AutoComplete extends Component {
     constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import PaginatedTable, { HTTPaginatedTable } from "./PaginatedTable";
 
 const headers = [
@@ -159,5 +159,6 @@ class App extends Component {
 }
 
 window.onload = () => {
-	ReactDOM.render(<App />,document.getElementById('app'));
+	const root = createRoot(document.getElementById('app'));
+	root.render(<App />);
 };

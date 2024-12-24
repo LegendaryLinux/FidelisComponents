@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import FancySelect from './FancySelect';
 
 const selectOptions = [
@@ -81,5 +81,6 @@ const Example = () => (
 );
 
 window.onload = () => {
-	ReactDOM.render(<Example />, document.getElementById('app'));
+	const root = createRoot(document.getElementById('app'));
+	root.render(<Example />);
 };

@@ -1,4 +1,4 @@
-@import '~@fidelisppm/fidelis-styles/mixins';
+@use '~@fidelisppm/fidelis-styles/mixins';
 
 /* Tables, rows, and columns */
 $table-header-background: #f0f0ee;
@@ -9,7 +9,7 @@ $table-border-color: #d3d3d3;
 .paginated-table-container {
   table{
     border: 1px solid #ececec;
-    @include border-radius(4px);
+    @include mixins.border-radius(4px);
     align-items: center;
     vertical-align: center;
 

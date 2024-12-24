@@ -1,8 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { forEach as _forEach, map as _map } from 'lodash-es';
-import Moment from 'react-moment';
-import 'moment-timezone';
+import {createRoot} from 'react-dom/client';
 import BannerMessage from '@fidelisppm/banner-message';
 
 class Utils {
@@ -82,20 +79,18 @@ class Utils {
 
 	/**
 	 * Generate an optgroup of options for the selected states
-	 * @param {Array} selected - An array containing the selected states.
 	 * @returns {JSX.Element} - The generated state options wrapped in an optgroup.
 	 */
-	static getStateOptions(selected = []) {
-		const options = _map(Object.keys(this.states),
-			(state, id) => (
-				<option value={state} key={id} selected={selected.includes(state)}>
-					{this.states[state]}
-				</option>
-			));
-
+	static getStateOptions() {
 		return (
 			<optgroup key="United States" label="United States">
-				{ options }
+				{
+					Object.keys(this.states).map((abbr) => (
+						<option value={abbr} key={abbr}>
+							{this.states[abbr]}
+						</option>
+					))
+				}
 			</optgroup>
 		);
 	}
@@ -105,7 +100,11 @@ class Utils {
 	 * @returns {Array} An array of abbreviated state options.
 	 */
 	static getMiniStateOptions() {
-		return _map(Object.keys(this.states), state => <option value={state} key={state}>{state}</option>);
+		return Object.keys(this.states).map((abbr) => (
+			<option value={abbr} key={abbr}>
+				{abbr}
+			</option>
+		));
 	}
 
 	/**
@@ -194,10 +193,8 @@ class Utils {
 	 */
 	static showSuccessBanner(message) {
 		this.resetBannerMessage();
-		ReactDOM.render(
-			<BannerMessage message={message} />,
-			document.getElementById('fidelis-banner-message-container'),
-		);
+		const root = createRoot(document.getElementById('fidelis-banner-message-container'));
+		root.render(<BannerMessage message={message} />);
 	}
 
 	/**
@@ -206,10 +203,8 @@ class Utils {
 	 */
 	static showWarningBanner(message) {
 		this.resetBannerMessage();
-		ReactDOM.render(
-			<BannerMessage message={message} isWarning={true} />,
-			document.getElementById('fidelis-banner-message-container'),
-		);
+		const root = createRoot(document.getElementById('fidelis-banner-message-container'));
+		root.render(<BannerMessage message={message} isWarning={true} />);
 	}
 
 	/**
@@ -218,10 +213,8 @@ class Utils {
 	 */
 	static showErrorBanner(message) {
 		this.resetBannerMessage();
-		ReactDOM.render(
-			<BannerMessage message={message} isError={1 === 1} />,
-			document.getElementById('fidelis-banner-message-container'),
-		);
+		const root = createRoot(document.getElementById('fidelis-banner-message-container'));
+		root.render(<BannerMessage message={message} isError={true} />);
 	}
 
 	/**
@@ -235,7 +228,7 @@ class Utils {
 		const temp = [];
 		let unique = true;
 
-		_forEach(arr, (val) => {
+		arr.forEach((val) => {
 			if (temp.includes(val)) {
 				unique = false;
 			}
@@ -260,8 +253,7 @@ class Utils {
 				value = decodeURIComponent(thisParam[1]);
 			}
 		});
-		if (value) { return value; }
-		return null;
+		return value;
 	}
 
 	/**
@@ -275,13 +267,6 @@ class Utils {
 	}
 
 	/**
-	 * Transform an ISO-8601 date string and return a human-readable date string
-	 * @param dateString
-	 * @returns {string}
-	 */
-	static makeReadableDate = dateString => <Moment date={dateString} interval={0} format="ddd MMM DD YYYY, h:mma" />;
-
-	/**
 	 * Transform a string into a readable phone number. If there are more than ten digits present in the
 	 * passed value, only the first ten will be returned
 	 * @param {string} phone
@@ -289,7 +274,7 @@ class Utils {
 	 */
 	static makeReadablePhone = (phone) => {
 		const stripped = phone.replace(/\D/g, '');
-		return `(${stripped.substr(0, 3)}) ${stripped.substring(3, 6)}-${stripped.substr(6)}`;
+		return `(${stripped.substring(0, 3)}) ${stripped.substring(3, 6)} - ${stripped.substring(6, 10)}`;
 	};
 
 	/**

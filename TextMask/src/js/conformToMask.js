@@ -75,7 +75,7 @@ export default function conformToMask(rawValue = emptyString, mask = emptyArray,
         }
 
         // Now we trick our algorithm by modifying the raw value to make it contain additional placeholder characters
-        // That way when the we start laying the characters again on the mask, it will keep the non-deleted characters
+        // That way when we start laying the characters again on the mask, it will keep the non-deleted characters
         // in their positions.
         rawValue = (
             rawValue.slice(0, indexOfFirstChange) +
@@ -237,11 +237,11 @@ export default function conformToMask(rawValue = emptyString, mask = emptyArray,
 
         if (indexOfLastFilledPlaceholderChar !== null) {
             // We substring from the beginning until the position after the last filled placeholder char.
-            conformedValue = conformedValue.substr(0, indexOfLastFilledPlaceholderChar + 1)
+            conformedValue = conformedValue.substring(0, indexOfLastFilledPlaceholderChar + 1);
         } else {
             // If we couldn't find `indexOfLastFilledPlaceholderChar` that means the user deleted
             // the first character in the mask. So we return an empty string.
-            conformedValue = emptyString
+            conformedValue = emptyString;
         }
     }
 

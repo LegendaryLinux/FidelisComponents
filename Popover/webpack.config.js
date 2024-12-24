@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		index: './src/js/Popover.js'
+		index: './src/Popover.js'
 	},
 	module: {
 		rules: [

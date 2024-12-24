@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _forEach from 'lodash-es/forEach';
 import MaskedInput from '@fidelisppm/text-mask';
 import '../styles/LimitedInput.scss';
 
@@ -41,7 +40,7 @@ export default class LimitedInput extends Component {
 	makeInputProps = () => {
 		// Strip props this component accepts and props that may conflict
 		const props = {};
-		_forEach(Object.keys(this.props), (prop) => {
+		Object.keys(this.props).forEach((prop) => {
 			if (prop !== 'maxChars' && prop !== 'alwaysShowLimit' && prop !== 'onKeyUp'
 				&& prop !== 'className' && prop !== 'alertPosition') {
 				props[prop] = this.props[prop];

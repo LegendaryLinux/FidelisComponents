@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import FancyCheckbox from "./FancyCheckbox";
 
 const containerStyle = {
@@ -33,5 +33,6 @@ class Example extends Component {
 }
 
 window.onload = () => {
-	ReactDOM.render(<Example />, document.getElementById('app'));
+	const root = createRoot(document.getElementById('app'));
+	root.render(<Example />);
 };

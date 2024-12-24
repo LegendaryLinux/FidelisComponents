@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
+import {createRoot} from 'react-dom/client';
 import AutoComplete from './AutoComplete';
 
 class App extends Component {
@@ -74,4 +74,7 @@ class App extends Component {
 }
 
 // Load component into DOM
-window.addEventListener('load', () => ReactDOM.render(<App />, document.getElementById('app')));
+window.addEventListener('load', () => {
+  const root = createRoot(document.getElementById('app'));
+  root.render(<App />);
+});

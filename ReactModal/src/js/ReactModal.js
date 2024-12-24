@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { isString as _isString } from 'lodash-es';
+import {createRoot} from 'react-dom/client';
 import ReactModalContent from './ReactModalContent';
 import '../styles/ReactModal.scss';
 
@@ -19,22 +18,22 @@ class ReactModal extends React.Component {
 		document.body.appendChild(modalContainer);
 
 		// Render the modal content into the newly created div
-		ReactDOM.render(
+		const root = createRoot(document.getElementById(this.containerId));
+		root.render(
 			<ReactModalContent
 				modalId={this.modalId}
 				overlayId={this.overlayId}
 				modalContent={this.props.content}
 				closeModal={this.closeModal}
-			/>,
-			document.getElementById(this.containerId), () => {
-				// Allow the escape key to close the modal
-				document.body.addEventListener('keydown', this.closeModalOnEscape);
-
-				// Properly align the modal on the page
-				const visibleModal = document.getElementById(this.modalId);
-				visibleModal.style.left = `calc(50% - ${visibleModal.offsetWidth / 2}px)`;
-			},
+			/>
 		);
+
+		// Allow the escape key to close the modal
+		document.body.addEventListener('keydown', this.closeModalOnEscape);
+
+		// Properly align the modal on the page
+		const visibleModal = document.getElementById(this.modalId);
+		visibleModal.style.left = `calc(50% - ${visibleModal.offsetWidth / 2}px)`;
 	};
 
 	closeModalOnEscape = (event) => {

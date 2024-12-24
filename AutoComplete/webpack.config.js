@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		index: './src/js/AutoComplete.js'
+		index: './src/AutoComplete.js'
 	},
 	module: {
 		rules: [

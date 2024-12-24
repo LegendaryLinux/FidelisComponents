@@ -1,26 +1,26 @@
+@use '~@fidelisppm/fidelis-styles/mixins';
+@use '~@fidelisppm/fidelis-styles/buttons';
+
 .paginated-table-container{
   /* Tables, rows, and columns */
   $table-header-background: #f0f0ee;
   $table-row-background: #ffffff;
   $table-row-highlight: #f8f9f9;
   $table-border-color: #d3d3d3;
-
-  @import '~@fidelisppm/fidelis-styles/mixins';
-  @import '~@fidelisppm/fidelis-styles/buttons';
   font-family: 'PT Sans', 'sans-serif';
 
-  @include border-radius(4px);
-  @include box-shadow(1px,1px,1px,1px,#ececec);
+  @include mixins.border-radius(4px);
+  @include mixins.box-shadow(1px,1px,1px,1px,#ececec);
   background-color: #ffffff;
-  padding: 1em auto;
+  padding: 1em;
   width: 100%;
 
   .paginated-table-wrapper{
-    @include border-top-radius(4px);
+    @include mixins.border-top-radius(4px);
     padding: 0;
 
     .paginated-table{
-      @include border-top-radius(4px);
+      @include mixins.border-top-radius(4px);
       width: 100%;
       border: 1px solid #ececec;
       align-items: center;

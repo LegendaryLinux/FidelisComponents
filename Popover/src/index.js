@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import Popover from './Popover';
 
 const outerWrapperStyle = {
@@ -140,6 +140,7 @@ const Example = () => (
   </div>
 );
 
-window.onload = function(){
-  ReactDOM.render(<Example />, document.getElementById('app'));
+window.onload = function() {
+  const root = createRoot(document.getElementById('app'));
+  root.render(<Example />);
 };

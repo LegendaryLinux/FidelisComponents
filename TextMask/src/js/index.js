@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import TextMask from './TextMask';
 
 class Example extends Component {
@@ -47,5 +47,6 @@ class Example extends Component {
 }
 
 window.onload = function(){
-	ReactDOM.render(<Example />, document.getElementById('app'));
+	const root = createRoot(document.getElementById('app'));
+	root.render(<Example />);
 };
