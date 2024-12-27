@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _forEach from 'lodash-es/forEach';
-import _map from 'lodash-es/map';
-import _isUndefined from 'lodash-es/isUndefined';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
 import Utils from '@fidelisppm/utils';
@@ -49,7 +46,7 @@ class HTTPaginatedTable extends Component {
 	};
 
 	makeHeader = () => {
-		const headerColumns = _map((this.state.headers), (column) => {
+		const headerColumns = this.state.headers.map((column) => {
 			let sortArrow = null;
 			if (this.state.sortValue === column.key) {
 				if (this.state.sortAscending) {
@@ -85,9 +82,9 @@ class HTTPaginatedTable extends Component {
 		const displayedRows = [];
 
 		// Loop over each row we are attempting to add
-		_forEach(this.state.dataRows, (row) => {
+		this.state.dataRows.forEach((row) => {
 			// Loop over each of the specified headers we are to include
-			const displayedColumns = _map(this.state.headers, (column) => {
+			const displayedColumns = this.state.headers.map((column) => {
 				if (typeof (row[column.key]) === 'undefined') {
 					throw new Error(`Attempted to access dataRows key which does not exist: ${column.key}`);
 				}
@@ -97,8 +94,7 @@ class HTTPaginatedTable extends Component {
 
 				// If an overrides object is provided, print the value in there
 				let printVal = null;
-				if (!_isUndefined(row.overrides) &&
-					!_isUndefined(row.overrides[column.key])) {
+				if (row?.overrides && row.overrides[column.key]) {
 					printVal = row.overrides[column.key];
 				} else {
 					printVal = row[column.key] ? row[column.key] : '\u2013';
@@ -107,14 +103,14 @@ class HTTPaginatedTable extends Component {
 				// Attempt to auto-format phone numbers
 				if (column.key.toLowerCase().search('phone') > -1
 					&& printVal.match(/^\d{10}$/) !== null) {
-					printVal = `(${printVal.substr(0, 3)}) ${printVal.substring(3, 6)}-${printVal.substr(6)}`;
+					printVal = `(${printVal.substring(0, 3)}) ${printVal.substring(3, 6)}-${printVal.substring(6)}`;
 				}
 
 				// Add the column to the row
 				return <td key={Utils.genUUID()} className={centerClass}>{printVal}</td>;
 			});
 
-			// Add the row the the tbody
+			// Add the row to the tbody
 			displayedRows.push(<tr key={Utils.genUUID()}>{displayedColumns}</tr>);
 		});
 

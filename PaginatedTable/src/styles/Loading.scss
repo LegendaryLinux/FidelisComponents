@@ -4,8 +4,10 @@
     to{ transform: rotate(360deg); }
   }
 
-  width: 100%;
-  text-align: center;
+  &{
+    width: 100%;
+    text-align: center;
+  }
 
   svg{
     font-size: 2.5em;

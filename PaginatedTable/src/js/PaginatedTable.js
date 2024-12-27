@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _forEach from 'lodash-es/forEach';
-import _map from 'lodash-es/map';
-import _isUndefined from 'lodash-es/isUndefined';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown, faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
 import HTTPaginatedTable from './HTTPaginatedTable';
@@ -26,16 +23,16 @@ class PaginatedTable extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps === this.props) { return; }
+		console.log('New Update: old vs new');
+		console.log(prevProps);
+		console.log(this.props);
+		if (JSON.stringify(prevProps) === JSON.stringify(this.props)) { return; }
 
 		this.setState({
 			currentPage: this.props.initialPage,
 			dataRows: this.props.dataRows,
 			sortValue: this.props.initialSortKey,
 			sortAscending: this.props.initialSortAsc,
-		}, () => {
-			// Sort the data after assigning new props, or an initial sorting will never happen
-			this.attemptSort(this.props);
 		});
 	}
 
@@ -49,18 +46,18 @@ class PaginatedTable extends Component {
 	attemptSort = (source) => {
 		let allowInitialSort = false;
 		if (source.initialSortKey !== null) {
-			_forEach(source.headers, (header) => {
+			for (let header of source.headers) {
 				if (header.key === source.initialSortKey) {
 					allowInitialSort = true;
-					return false;
+					break;
 				}
-			});
+			}
 		}
 		if (allowInitialSort) { this.sortData(); }
 	};
 
 	makeHeader = () => {
-		const headerColumns = _map((this.props.headers), (column) => {
+		const headerColumns = this.props.headers.map((column) => {
 			let sortArrow = null;
 			if (this.state.sortValue === column.key) {
 				if (this.state.sortAscending) {
@@ -112,7 +109,7 @@ class PaginatedTable extends Component {
 			}
 
 			// Loop over each of the specified headers we are to include
-			const displayedColumns = _map(this.props.headers, (column) => {
+			const displayedColumns = this.props.headers.map((column) => {
 				if (typeof (this.state.dataRows[i][column.key]) === 'undefined') {
 					throw new Error(`Attempted to access dataRows key which does not exist: ${column.key}`);
 				}
@@ -122,24 +119,23 @@ class PaginatedTable extends Component {
 
 				// If an overrides object is provided, print the value in there
 				let printVal = null;
-				if (!_isUndefined(this.state.dataRows[i].overrides) &&
-					!_isUndefined(this.state.dataRows[i].overrides[column.key])) {
+				if (this.state.dataRows[i].overrides && this.state.dataRows[i].overrides[column.key]) {
 					printVal = this.state.dataRows[i].overrides[column.key];
 				} else {
-					printVal = this.state.dataRows[i][column.key] ? this.state.dataRows[i][column.key] : '\u2013';
+					printVal = (this.state.dataRows[i][column.key] ? this.state.dataRows[i][column.key] : '\u2013');
 				}
 
 				// Attempt to auto-format phone numbers
 				if (column.key.toLowerCase().search('phone') > -1
 					&& printVal.match(/^\d{10}$/) !== null) {
-					printVal = `(${printVal.substr(0, 3)}) ${printVal.substring(3, 6)}-${printVal.substr(6)}`;
+					printVal = `(${printVal.substring(0, 3)}) ${printVal.substring(3, 6)}-${printVal.substring(6)}`;
 				}
 
 				// Add the column to the row
 				return <td key={this.genUUID()} className={centerClass}>{printVal}</td>;
 			});
 
-			// Add the row the the tbody
+			// Add the row to the tbody
 			displayedRows.push(<tr key={this.genUUID()}>{displayedColumns}</tr>);
 		}
 
