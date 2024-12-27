@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		index: './src/js/SectionTitle.js'
+		index: './src/SectionTitle.js'
 	},
 	module: {
 		rules: [

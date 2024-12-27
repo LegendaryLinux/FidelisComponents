@@ -1,23 +1,26 @@
 .react-modal-overlay{
-    position:               fixed;
-    top:                    0;
-    left:                   0;
-    width:                  100%;
-    height:                 100%;
-    z-index:                50;
-    background:             rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .react-modal{
-    position:               fixed;
-    z-index:                51;
-    top:                    10%;
+    position: fixed;
+    z-index: 51;
+    top: 10%;
 }
 
 .react-modal-hidden{
-    display:                none;
+    display: none;
 }
 
 .react-modal-trigger, #react-modal-close{
-    display:                inline-block;
+    display: inline-block;
 }

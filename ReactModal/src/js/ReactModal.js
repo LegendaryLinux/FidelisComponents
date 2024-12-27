@@ -15,6 +15,7 @@ class ReactModal extends React.Component {
 	showModal = () => {
 		const modalContainer = document.createElement('div');
 		modalContainer.id = this.containerId;
+
 		document.body.appendChild(modalContainer);
 
 		// Render the modal content into the newly created div
@@ -30,10 +31,6 @@ class ReactModal extends React.Component {
 
 		// Allow the escape key to close the modal
 		document.body.addEventListener('keydown', this.closeModalOnEscape);
-
-		// Properly align the modal on the page
-		const visibleModal = document.getElementById(this.modalId);
-		visibleModal.style.left = `calc(50% - ${visibleModal.offsetWidth / 2}px)`;
 	};
 
 	closeModalOnEscape = (event) => {

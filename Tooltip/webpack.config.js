@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		index: './src/js/Tooltip.js'
+		index: './src/Tooltip.js'
 	},
 	module: {
 		rules: [
