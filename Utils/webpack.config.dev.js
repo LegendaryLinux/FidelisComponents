@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		index: './src/Utils.js'
+		index: './src/index.js'
 	},
 	module: {
 		rules: [
@@ -28,8 +28,7 @@ module.exports = {
 		]
 	},
 	output: {
-		path: path.resolve(__dirname),
+		path: path.resolve(__dirname)+'/public/js',
 		filename: "[name].js",
-		libraryTarget: 'commonjs2',
 	}
 };
